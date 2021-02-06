@@ -1,4 +1,4 @@
-#include "../ex04/ft_stock_str.h"
+#include "ft_stock_str.h"
 #include <unistd.h>
 
 void ft_putchar(char c)
