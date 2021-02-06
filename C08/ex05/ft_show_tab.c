@@ -26,15 +26,14 @@ void    ft_putnmbr(int number)
 void    ft_show_tab(struct s_stock_str *par)
 {
     int index;
-    int value;
 
-    index = 1;
-    value = 0;
+    index = 0;
     while (par[index].str)
     {
-        ft_putstr((par + value)->str);
-        ft_putstr((par + value)->copy);
-        ft_putnmbr((par + value)->size);
+        ft_putstr((par + index)->str);
+        ft_putstr((par + index)->copy);
+        ft_putnmbr((par + index)->size);
+        write(1, "\n", 1);
         index++;
     }
 }

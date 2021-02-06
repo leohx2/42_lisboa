@@ -35,7 +35,7 @@ struct  s_stock_str *ft_strs_to_tab(int ac, char **av)
     struct s_stock_str  *to_return;
     int count;
 
-	if (!(to_return = malloc(sizeof(struct s_stock_str) * (ac + 2))))
+	if (!(to_return = malloc(sizeof(struct s_stock_str) * (ac + 1))))
 		return (0);
     count = 0;
     while(count < ac)
