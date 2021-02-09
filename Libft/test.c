@@ -1,16 +1,25 @@
-#include <ctype.h>
+#include <string.h>
 #include "libft.h"
 #include <stdio.h>
+#include <string.h>
+
 int main()
 {
-    printf("%c\n",tolower('A'));
-    printf("%c FT\n",ft_tolower('A'));
-    printf("%c\n",tolower('a'));
-    printf("%c FT\n",ft_tolower('a'));
-    printf("%c\n",tolower('z'));
-    printf("%c FT\n",ft_tolower('z'));
-    printf("%c\n",tolower('Z'));
-    printf("%c FT\n",ft_tolower('Z'));
-    return 0;
-    
+    char first[] = "This is ";
+    char last[] = "a potentially long string";
+    int r;
+    int size = 64;
+    char buffer[size];
+
+    strcpy(buffer,first);
+    r = ft_strlcat(buffer,last,size);
+
+    puts(buffer);
+    printf("Value returned: %d\n",r);
+    if( r > size )
+        puts("String truncated");
+    else
+        puts("String was fully copied");
+
+    return(0);
 }
