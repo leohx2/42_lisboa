@@ -1,5 +1,5 @@
 
-unsigned int ft_strlcpy(char *dst, const char *src, unsigned int size)
+unsigned int    ft_strlcpy(char *dst, const char *src, unsigned int size)
 {
     unsigned int index;
     unsigned int count;

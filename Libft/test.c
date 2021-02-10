@@ -5,21 +5,12 @@
 
 int main()
 {
-    char first[] = "This is ";
-    char last[] = "a potentially long string";
-    int r;
-    int size = 64;
-    char buffer[size];
-
-    strcpy(buffer,first);
-    r = ft_strlcat(buffer,last,size);
-
-    puts(buffer);
-    printf("Value returned: %d\n",r);
-    if( r > size )
-        puts("String truncated");
-    else
-        puts("String was fully copied");
+    char test1[50] = "123456";
+    char test2[50] = "123456";
+    memset(test1, '0', 6);
+    ft_memset(test2, '0', 6);
+    printf("%s ORG\n",test1);
+    printf("%s FCT\n", test2);
 
     return(0);
 }
