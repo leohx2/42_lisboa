@@ -1,16 +1,15 @@
 #include <string.h>
 #include "libft.h"
 #include <stdio.h>
-#include <string.h>
+#include <strings.h>
+#include <stdlib.h>
 
 int main()
 {
-    char test1[50] = "123456";
-    char test2[50] = "123456";
-    memset(test1, '0', 6);
-    ft_memset(test2, '0', 6);
-    printf("%s ORG\n",test1);
-    printf("%s FCT\n", test2);
+    char test1[50] = "Hello World";
+    char *test2 = strdup(test1);
+    char *test3 = ft_strdup(test1);
 
-    return(0);
+    printf("%s // original\n", test2);
+    printf("%s // funcao_l\n", test3);
 }
