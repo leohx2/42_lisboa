@@ -1,0 +1,9 @@
+{
+    "files.associations": {
+        "stock_ft.h": "c",
+        "fcntl.h": "c",
+        "stdio.h": "c",
+        "string.h": "c"
+    },
+    "C_Cpp.dimInactiveRegions": false
+}
