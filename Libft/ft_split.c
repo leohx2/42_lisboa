@@ -12,21 +12,14 @@
 
 #include <stdlib.h>
 
-int		ft_is_in_charset(char c, char *charset)
+int		ft_is_in_charset(char c, char charset)
 {
-	int index;
-
-	index = 0;
-	while (charset[index] != '\0')
-	{
-		if (c == charset[index])
-			return (1);
-		index++;
-	}
+	if (c == charset)
+		return (1);
 	return (0);
 }
 
-void	ft_final_part(char **str_return, char *str, char *charset)
+void	ft_final_part(char **str_return, char *str, char charset)
 {
 	int	aloc;
 	int	count;
@@ -51,7 +44,7 @@ void	ft_final_part(char **str_return, char *str, char *charset)
 	}
 }
 
-void	ft_scnd_size(char **str_return, char *str, char *charset)
+void	ft_scnd_size(char **str_return, char *str, char charset)
 {
 	int	count;
 	int	aloc;
@@ -75,7 +68,7 @@ void	ft_scnd_size(char **str_return, char *str, char *charset)
 	}
 }
 
-int		ft_frst_size(char *str, char *charset)
+int		ft_frst_size(char *str, char charset)
 {
 	int	size;
 	int	index;
@@ -104,15 +97,15 @@ int		ft_frst_size(char *str, char *charset)
 	return (size + 1);
 }
 
-char	**ft_split(char const *str, char *charset)
+char	**ft_split(char const *s, char c)
 {
 	char	**str_return;
 	int		first_size;
 
-	first_size = ft_frst_size((char*)str, charset);
+	first_size = ft_frst_size((char*)s, c);
 	str_return = (char**)malloc(sizeof(char*) * first_size);
-	ft_scnd_size(str_return, (char*)str, charset);
-	ft_final_part(str_return, (char*)str, charset);
+	ft_scnd_size(str_return, (char*)s, c);
+	ft_final_part(str_return, (char*)s, c);
 	str_return[first_size] = NULL;
 	return (str_return);
 }
