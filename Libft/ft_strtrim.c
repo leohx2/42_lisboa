@@ -26,7 +26,7 @@ int		ft_isset(char c, char const *set)
 	return (0);
 }
 
-int		ft_strlen(const char *s1)
+static int		ft_strlen(const char *s1)
 {
 	int	count;
 

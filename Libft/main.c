@@ -14,9 +14,9 @@
 
 #include "libft.h"
 #include <stdio.h>
-#include <string.h>
+#include <strings.h>
 #include <ctype.h>
-#include <bsd/string.h>
+//#include <bsd/string.h>
 
 int	main(void)
 {
@@ -211,7 +211,7 @@ int	main(void)
 	printf("\tft:  %p\tstr: %s\n", ft_allocated, ft_allocated);
 	free(ft_allocated);
 	
-/* 	printf("\nTesting ft_strtrim(\"ThisT\", \"T\")\n\tft_strtrim(\" passed \", \" \")\n\tft_strtrim(\"This function\", \"\"):\n\n");
+ 	printf("\nTesting ft_strtrim(\"ThisT\", \"T\")\n\tft_strtrim(\" passed \", \" \")\n\tft_strtrim(\"This function\", \"\"):\n\n");
 	ft_allocated = ft_strtrim("ThisTh", "Th");
 	printf("\tft:  %p\tstr: %s\\0\n", ft_allocated, ft_allocated);
 	free(ft_allocated);
@@ -220,7 +220,7 @@ int	main(void)
 	free(ft_allocated);
 	ft_allocated = ft_strtrim("This function", "");
 	printf("\tft:  %p\tstr: %s\\0\n", ft_allocated, ft_allocated);
-	free(ft_allocated); */
+	free(ft_allocated);
 	
 	printf("\nTesting ft_split(\" This is a test. \", \' \')\n\tft_split(\"Test.\", \',\'):\n");
 	ft_strlcpy(temp, " This is a test. ", 46);

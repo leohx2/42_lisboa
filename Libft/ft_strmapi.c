@@ -1,50 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/13 19:22:42 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/02/13 19:32:22 by lrosendo         ###   ########.fr       */
+/*   Created: 2021/02/13 14:58:20 by lrosendo          #+#    #+#             */
+/*   Updated: 2021/02/13 19:30:37 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-int		ft_strlen(const char *str)
+static unsigned int		ft_strlen(char *str)
 {
-	int	aux;
+	unsigned int	count;
 
-	aux = 0;
-	while (str[aux])
-		aux++;
-	return (aux);
+	count = 0;
+	while (str[count])
+		count++;
+	return (count);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char					*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char	*to_return;
-	int		aux;
+	char			*to_return;
+	unsigned int	aux;
+	unsigned int	s_len;
 
-	aux = ft_strlen(s1) + ft_strlen(s2);
-	if (!(to_return = (char*)malloc(aux * sizeof(char))))
-		return (0);
+	s_len = ft_strlen((char*)s);
 	aux = 0;
-	while (*s1)
+	if (!(to_return = (char*)malloc(s_len * sizeof(char))))
+		return (0);
+	while (s[aux])
 	{
-		to_return[aux] = *s1;
-		s1++;
+		to_return[aux] = (*f)(aux, s[aux]);
 		aux++;
-		if (!(*s1))
-		{
-			while (*s2)
-			{
-				to_return[aux] = *s2;
-				s2++;
-				aux++;
-			}
-		}
 	}
 	to_return[aux] = '\0';
 	return (to_return);

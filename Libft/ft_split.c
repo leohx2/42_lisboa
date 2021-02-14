@@ -104,15 +104,15 @@ int		ft_frst_size(char *str, char *charset)
 	return (size + 1);
 }
 
-char	**ft_split(char *str, char *charset)
+char	**ft_split(char const *str, char *charset)
 {
 	char	**str_return;
 	int		first_size;
 
-	first_size = ft_frst_size(str, charset);
+	first_size = ft_frst_size((char*)str, charset);
 	str_return = (char**)malloc(sizeof(char*) * first_size);
-	ft_scnd_size(str_return, str, charset);
-	ft_final_part(str_return, str, charset);
+	ft_scnd_size(str_return, (char*)str, charset);
+	ft_final_part(str_return, (char*)str, charset);
 	str_return[first_size] = NULL;
 	return (str_return);
 }
