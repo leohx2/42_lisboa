@@ -34,7 +34,7 @@ char			*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 		return (0);
 	while (s[aux])
 	{
-		to_return[aux] = f(1, s[aux]);
+		to_return[aux] = f(aux, s[aux]);
 		aux++;
 	}
 	to_return[aux] = '\0';
