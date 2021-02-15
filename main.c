@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlanca-c <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 15:59:09 by mlanca-c          #+#    #+#             */
-/*   Updated: 2021/02/13 14:36:53 by mlanca-c         ###   ########.fr       */
+/*   Updated: 2021/02/15 15:53:04 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,7 +212,7 @@ int	main(void)
 	free(ft_allocated);
 	
  	printf("\nTesting ft_strtrim(\"ThisT\", \"T\")\n\tft_strtrim(\" passed \", \" \")\n\tft_strtrim(\"This function\", \"\"):\n\n");
-	ft_allocated = ft_strtrim("ThisTh", "Th");
+	ft_allocated = ft_strtrim("ThisT", "T");
 	printf("\tft:  %p\tstr: %s\\0\n", ft_allocated, ft_allocated);
 	free(ft_allocated);
 	ft_allocated = ft_strtrim(" passed ", " ");
@@ -238,6 +238,7 @@ int	main(void)
 	}
 	printf("\n");
 	free(allocated);
+	
 	ft_strlcpy(temp, "Test.", 44);
 	allocated = ft_split(temp, ',');
 	printf("\t$%s$\n", temp);
@@ -251,9 +252,9 @@ int	main(void)
 		printf("\n");
 		i++;
 	}
-	printf("\n");
+	printf(" \n");
 	free(allocated);
-
+	
 	printf("\nTesting ft_itoa(-123123)\n\tft_itoa(0):\n");
 	printf("\n");
 	ft_allocated = ft_itoa(-123123);

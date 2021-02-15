@@ -1,4 +1,5 @@
-#include "stock_ft.h"
+#ifndef TEST_H
+#define TEST_H
 #include <unistd.h>
 
 void    ft_putstr(char *str)
@@ -24,3 +25,5 @@ int ft_check_arg(int argc)
     }
     return (1);
 }
+
+#endif

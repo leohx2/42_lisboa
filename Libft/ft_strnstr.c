@@ -6,13 +6,13 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 13:59:26 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/02/13 18:20:20 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/02/15 19:01:57 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_confirm(const char *dest, const char *src, size_t aux)
+static int		ft_confirm(const char *dest, const char *src, size_t aux)
 {
 	int	aux2;
 
@@ -27,7 +27,7 @@ int		ft_confirm(const char *dest, const char *src, size_t aux)
 	return (1);
 }
 
-char	*ft_strnstr(const char *dest, const char *src, size_t len)
+char			*ft_strnstr(const char *dest, const char *src, size_t len)
 {
 	size_t			aux;
 	int				to_return;

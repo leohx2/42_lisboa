@@ -6,13 +6,13 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 14:10:41 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/02/13 19:42:05 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/02/15 18:57:29 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-int		ft_value(int n)
+static int		ft_value(int n)
 {
 	int	count;
 
@@ -25,7 +25,7 @@ int		ft_value(int n)
 	return (count);
 }
 
-char	*ft_itoa(int n)
+char			*ft_itoa(int n)
 {
 	char	*to_return;
 	int		aux;

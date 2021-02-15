@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 19:22:42 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/02/13 19:32:22 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/02/15 14:01:19 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int		ft_strlen(const char *str)
 	return (aux);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char			*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*to_return;
 	int		aux;

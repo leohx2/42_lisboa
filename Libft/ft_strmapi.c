@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 14:58:20 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/02/13 19:30:37 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/02/15 19:02:09 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ static unsigned int		ft_strlen(char *str)
 	return (count);
 }
 
-char					*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+char					*ft_strmapi(char const *s,
+char (*f)(unsigned int, char))
 {
 	char			*to_return;
 	unsigned int	aux;

@@ -3,27 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrosendo <lrosendo@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 16:04:56 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/02/14 16:04:56 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/02/15 18:55:10 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include <string.h>
 #include <fcntl.h>
+#include <unistd.h>
 #include "libft.h"
 
-int main(int argc, char**argv)
+int     main()
 {
-    char c;
-    if(argc != 2)
-        return (0);
-    int fd;
-    fd = open(argv[1], O_RDWR | O_EXCL);
-    while ((read(fd, &c, sizeof(char))) > 0)
-    {}
-    ft_putnbr_fd(-25555, fd);
-    close(fd);
+    char **test;
+
+    test = ft_split(" This is a test.", '8');
+    printf("Comeca aqui\n%s\n%s\n", test[0],test[1]);
+    free (test);
 }

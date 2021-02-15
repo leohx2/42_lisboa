@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrosendo <lrosendo@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 16:53:40 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/02/14 16:53:40 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/02/15 18:58:31 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include <stdio.h>
+
 int		ft_size10(int n)
 {
 	int count;
@@ -25,14 +25,13 @@ int		ft_size10(int n)
 	return (count);
 }
 
-void    ft_putnbr_fd(int n, int fd)
+void	ft_putnbr_fd(int n, int fd)
 {
-	//char	aux;
 	int		size;
 	char	c;
 
 	if (n == -2147483648)
-		write(1, "-2147483648", (sizeof(char) *11));
+		write(1, "-2147483648", (sizeof(char) * 11));
 	else
 	{
 		if (n < 0)
@@ -48,7 +47,7 @@ void    ft_putnbr_fd(int n, int fd)
 			n = n % size;
 			size /= 10;
 		}
-		c = (n % size) + 48;
+		c = n + 48;
 		write(fd, &c, sizeof(char));
 	}
 }

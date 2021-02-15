@@ -6,13 +6,13 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 19:14:31 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/02/13 19:39:22 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/02/15 13:16:25 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-int		ft_isset(char c, char const *set)
+static int		ft_isset(char c, char const *set)
 {
 	int	aux;
 
@@ -36,7 +36,7 @@ static int		ft_strlen(const char *s1)
 	return (count);
 }
 
-char	*ft_strtrim(char const *s1, char const *set)
+char			*ft_strtrim(char const *s1, char const *set)
 {
 	char	*to_return;
 	int		aux;

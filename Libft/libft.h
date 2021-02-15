@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 14:00:29 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/02/13 19:34:20 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/02/15 19:02:43 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int		ft_toupper(int c);
 int		ft_tolower(int c);
 void	*ft_calloc(size_t n, size_t size);
 char	*ft_strdup(const char *s);
-char    *ft_substr(char const *s, unsigned int start,
+char	*ft_substr(char const *s, unsigned int start,
 unsigned int len);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strtrim(char const *s1, char const *set);

@@ -1,5 +1,4 @@
-#include "ft_display_file.c"
-#include "errors.c"
+#include "stock_ft.h"
 
 int main(int argc, char **argv)
 {

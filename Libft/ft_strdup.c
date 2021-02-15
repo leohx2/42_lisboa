@@ -6,13 +6,13 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 13:48:55 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/02/13 18:24:35 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/02/15 18:59:02 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_strlen2(const char *str)
+static int		ft_strlen2(const char *str)
 {
 	int	cont;
 
@@ -22,7 +22,7 @@ int		ft_strlen2(const char *str)
 	return (cont);
 }
 
-char	*ft_strdup(const char *s)
+char			*ft_strdup(const char *s)
 {
 	int		aux;
 	char	*to_return;

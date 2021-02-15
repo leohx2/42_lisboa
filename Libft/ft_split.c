@@ -6,76 +6,83 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 14:15:24 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/02/13 19:37:25 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/02/15 18:51:09 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <stdio.h>
 
-int		ft_is_in_charset(char c, char charset)
+static int		ft_is_in_charset(char c, char charset)
 {
 	if (c == charset)
 		return (1);
 	return (0);
 }
 
-void	ft_final_part(char **str_return, char *str, char charset)
+static void		ft_final_part(char **str_return, char *str, char charset)
 {
 	int	aloc;
 	int	count;
+	int index;
 
+	index = 0;
 	aloc = 0;
 	count = 0;
-	while (*str != '\0')
+	while (str[index])
 	{
-		if (ft_is_in_charset(*str, charset) == 0)
+		if (ft_is_in_charset(str[index], charset) == 0)
 		{
-			while (ft_is_in_charset(*str, charset) == 0 && *str != '\0')
+			while (ft_is_in_charset(str[index], charset) == 0 && str[index])
 			{
-				str_return[aloc][count] = *str;
+				str_return[aloc][count] = str[index];
 				count++;
-				str++;
+				if (!str[index + 1])
+					break ;
+				index++;
 			}
-			str_return[aloc][count] = 0;
 			aloc++;
 			count = 0;
 		}
-		str++;
+		index++;
 	}
+	str_return[aloc] = 0;
 }
 
-void	ft_scnd_size(char **str_return, char *str, char charset)
+static void		ft_scnd_size(char **str_return, char *str, char charset)
 {
 	int	count;
 	int	aloc;
+	int index;
 
+	index = 0;
 	aloc = 0;
 	count = 0;
-	while (*str != '\0')
+	while (str[index] != '\0')
 	{
-		if (ft_is_in_charset(*str, charset) == 0)
+		if (ft_is_in_charset(str[index], charset) == 0)
 		{
-			while (ft_is_in_charset(*str, charset) == 0 && *str != '\0')
+			while (ft_is_in_charset(str[index], charset) == 0 && str[index])
 			{
 				count++;
-				str++;
+				index++;
 			}
 			str_return[aloc] = (char*)malloc(count * sizeof(char));
 			aloc++;
 			count = 0;
 		}
-		str++;
+		index++;
 	}
 }
 
-int		ft_frst_size(char *str, char charset)
+static int		ft_frst_size(char *str, char charset)
 {
 	int	size;
 	int	index;
 	int	aux;
 
 	aux = 0;
-	index = 1;
+	index = 0;
 	size = 0;
 	while (str[index] != '\0')
 	{
@@ -94,18 +101,17 @@ int		ft_frst_size(char *str, char charset)
 		}
 		index++;
 	}
-	return (size + 1);
+	return (size + 2);
 }
 
-char	**ft_split(char const *s, char c)
+char			**ft_split(char const *s, char c)
 {
 	char	**str_return;
 	int		first_size;
 
 	first_size = ft_frst_size((char*)s, c);
-	str_return = (char**)malloc(sizeof(char*) * first_size);
+	str_return = (char**)malloc(sizeof(char *) * first_size);
 	ft_scnd_size(str_return, (char*)s, c);
 	ft_final_part(str_return, (char*)s, c);
-	str_return[first_size] = NULL;
 	return (str_return);
 }
