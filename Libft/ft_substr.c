@@ -10,22 +10,27 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
 char	*ft_substr(char const *s, unsigned int start,
 unsigned int len)
 {
+	char	*str_aux;
 	char	*to_return;
 	int		aux;
 
-	to_return = (char*)malloc((len - start) * sizeof(char));
+	str_aux = (char*)malloc((len - start + 1) * sizeof(char));
 	aux = 0;
 	while (start < len && s[start])
 	{
-		to_return[aux] = s[start];
+		str_aux[aux] = s[start];
 		start++;
 		aux++;
 	}
-	to_return[aux] = '\0';
+	str_aux[aux] = 0;
+	to_return = (char*)malloc((ft_strlen(str_aux) * sizeof(char)));
+	ft_memcpy(to_return, str_aux, ft_strlen(str_aux));
+	to_return[aux] = 0;
+	free(str_aux);
 	return (to_return);
 }

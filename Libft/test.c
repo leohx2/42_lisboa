@@ -17,8 +17,8 @@
 
 int     main()
 {
-    printf("%i\n", ft_strncmp("1234", "1235", 3));
-    printf("%i\n", ft_strncmp("Tripouille", "TriPouille", 42));
-    printf("%i\n", ft_strncmp("Tripouille", "TripouillE", 42));
-    printf("%i\n", ft_strncmp("Tripouille", "Tripouill", 42));
+    char *test = "aaabcabcd";
+
+    printf("%s  \n",ft_substr(test, 1, 1));
+    printf("%s\n", test + 1);
 }
