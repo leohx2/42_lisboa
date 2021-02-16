@@ -12,35 +12,26 @@
 
 #include "libft.h"
 
-static int		ft_confirm(const char *dest, const char *src, size_t aux)
-{
-	int	aux2;
-
-	aux2 = 0;
-	while (src[aux2])
-	{
-		if (src[aux2] != dest[aux])
-			return (0);
-		aux++;
-		aux2++;
-	}
-	return (1);
-}
-
 char			*ft_strnstr(const char *dest, const char *src, size_t len)
 {
 	size_t			aux;
 	int				to_return;
+	size_t			aux_d;
 
+	aux_d = 0;
 	aux = 0;
-	to_return = 0;
 	while (dest[aux] && aux < len)
 	{
-		if (dest[aux] == src[0])
+		if (dest[aux] == src[aux_d])
 		{
-			to_return = ft_confirm(dest, src, aux);
-			if (to_return == 1)
-				return ((char*)(dest + aux));
+			aux_d = 0;
+			while (dest[aux + aux_d] == src[aux_d]
+			&& (aux_d + aux) < len)
+			{
+				if (src[aux_d + 1] == '\0')
+					return ((char*)(dest + aux));
+				aux_d++;
+			}
 		}
 		aux++;
 	}
