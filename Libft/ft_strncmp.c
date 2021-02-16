@@ -11,32 +11,24 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	size_t			aux;
-	int				s1_value;
-	int				s2_value;
+	char	*s1_aux;
+	char	*s2_aux;
+	size_t	aux;
 
+	s1_aux = (char*)s1;
+	s2_aux = (char*)s2;
 	aux = 0;
-	s1_value = *s1;
-	s2_value = *s2;
-	while (*s1 == *s2 && *s1 && aux < n)
+	if (n == 0)
+		return (0);
+	while (aux < n)
 	{
-		s1_value += *s1;
-		s2_value += *s2;
-		s1++;
-		s2++;
-		if (!*s1 && *s2)
-			s2_value += 1;
-		if (!*s2 && *s1)
-			s1_value += 1;
+		if (s1_aux[aux] != s2_aux[aux])
+			return (s1_aux[aux] - s2_aux[aux]);
 		aux++;
 	}
-	if (*s2 && *s1)
-	{
-		s1_value += *s1;
-		s2_value += *s2;
-	}
-	return (s1_value - s2_value);
+	return (0);
 }
