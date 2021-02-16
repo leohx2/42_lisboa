@@ -17,7 +17,5 @@
 
 int     main()
 {
-    char *test = "1";
-
-    printf("%s  \n",ft_substr(test, 42, 420));
+    printf("%s  \n",ft_strjoin("", "42"));
 }

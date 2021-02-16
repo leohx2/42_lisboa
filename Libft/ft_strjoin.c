@@ -10,42 +10,24 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
-static int		ft_strlen(const char *str)
-{
-	int	aux;
-
-	aux = 0;
-	while (str[aux])
-		aux++;
-	return (aux);
-}
-
-char			*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*to_return;
 	int		aux;
+	int		len;
 
-	aux = ft_strlen(s1) + ft_strlen(s2);
-	if (!(to_return = (char*)malloc(aux * sizeof(char))))
-		return (0);
 	aux = 0;
-	while (*s1)
+	len = ft_strlen((char*)s1) + ft_strlen((char*)s2);
+	if (!(to_return = (char*)malloc(len * sizeof(char))))
+		return (0);
+	ft_memcpy(to_return, s1, ft_strlen((char*)s1));
+	while (s2[aux])
 	{
-		to_return[aux] = *s1;
-		s1++;
+		to_return[aux + ft_strlen((char*)s1)] = s2[aux];
 		aux++;
-		if (!(*s1))
-		{
-			while (*s2)
-			{
-				to_return[aux] = *s2;
-				s2++;
-				aux++;
-			}
-		}
 	}
-	to_return[aux] = '\0';
+	to_return[len] = '\0';
 	return (to_return);
 }
