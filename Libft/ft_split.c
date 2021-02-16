@@ -41,6 +41,7 @@ static void		ft_final_part(char **str_return, char *str, char charset)
 					break ;
 				index++;
 			}
+			str_return[aloc][count] = 0;
 			aloc++;
 			count = 0;
 		}

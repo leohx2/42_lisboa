@@ -17,5 +17,6 @@
 
 int     main()
 {
-    printf("%s  \n",ft_strjoin("", "42"));
+    char **tab = ft_split(" trasdopi 42 ", ' ');
+    printf("%s", tab[1]);
 }
