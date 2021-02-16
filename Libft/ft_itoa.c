@@ -18,7 +18,7 @@ static int		ft_value(int n)
 
 	count = 1;
 	while (n > 9)
-	{	
+	{
 		count *= 10;
 		n /= 10;
 	}
@@ -34,7 +34,16 @@ static void		ft_make_str(int nmbr_size, int n, char *str_aux, int aux)
 		nmbr_size /= 10;
 	}
 	str_aux[aux++] = (n % 10) + 48;
-	str_aux[aux++] = 0;
+}
+
+static char		*ft_allocmin(char *min)
+{
+	char *to_return;
+
+	to_return = (char *)ft_calloc(sizeof(char), ft_strlen(min));
+	ft_memcpy(to_return, min, ft_strlen(min));
+	to_return[ft_strlen(min)] = 0;
+	return (to_return);
 }
 
 char			*ft_itoa(int n)
@@ -45,10 +54,13 @@ char			*ft_itoa(int n)
 	int		nmbr_size;
 
 	aux = 0;
-	if (!(str_aux = (char*)malloc(12 * sizeof(char))))
-		return (0);
 	if (n == -2147483648)
-		return (str_aux = "-2147483648\0");
+	{
+		to_return = ft_allocmin("-2147483648");
+		return (to_return);
+	}
+	if (!(str_aux = (char*)ft_calloc(11, sizeof(char))))
+		return (0);
 	if (n < 0)
 	{
 		str_aux[aux++] = '-';
@@ -59,5 +71,6 @@ char			*ft_itoa(int n)
 	to_return = (char*)ft_calloc(sizeof(char), ft_strlen(str_aux));
 	ft_memcpy(to_return, str_aux, ft_strlen(str_aux));
 	to_return[ft_strlen(to_return)] = '\0';
+	free(str_aux);
 	return (to_return);
 }
