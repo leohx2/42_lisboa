@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
 static int		ft_isset(char c, char const *set)
 {
@@ -26,32 +26,26 @@ static int		ft_isset(char c, char const *set)
 	return (0);
 }
 
-static int		ft_strlen(const char *s1)
-{
-	int	count;
-
-	count = 0;
-	while (s1[count])
-		count++;
-	return (count);
-}
-
 char			*ft_strtrim(char const *s1, char const *set)
 {
 	char	*to_return;
 	int		aux;
+	char	*str_aux;
 
 	aux = 0;
-	to_return = (char*)malloc(ft_strlen(s1) * sizeof(char));
+	str_aux = (char*)malloc(ft_strlen(s1) * sizeof(char));
 	while (*s1)
 	{
 		if (!(ft_isset(*s1, set)))
 		{
-			to_return[aux] = *s1;
+			str_aux[aux] = *s1;
 			aux++;
 		}
 		s1++;
 	}
+	to_return = (char*)calloc(sizeof(char), ft_strlen(str_aux));
+	ft_memcpy(to_return, str_aux, ft_strlen(str_aux));
+	free(str_aux);
 	to_return[aux] = '\0';
 	return (to_return);
 }
