@@ -19,9 +19,11 @@ unsigned int len)
 	char	*to_return;
 	int		aux;
 
+	if (ft_strlen(s) < start)
+		return (to_return = (char*)ft_calloc(2, 1));
 	str_aux = (char*)malloc((len - start + 1) * sizeof(char));
 	aux = 0;
-	while (start < len && s[start])
+	while (start <= len && s[start])
 	{
 		str_aux[aux] = s[start];
 		start++;

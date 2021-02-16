@@ -17,8 +17,7 @@
 
 int     main()
 {
-    char *test = "aaabcabcd";
+    char *test = "1";
 
-    printf("%s  \n",ft_substr(test, 1, 1));
-    printf("%s\n", test + 1);
+    printf("%s  \n",ft_substr(test, 42, 420));
 }
