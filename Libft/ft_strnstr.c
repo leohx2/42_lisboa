@@ -15,18 +15,21 @@
 char			*ft_strnstr(const char *dest, const char *src, size_t len)
 {
 	size_t			aux;
-	int				to_return;
 	size_t			aux_d;
+	const char		*empty;
 
+	empty = (char*)"";
 	aux_d = 0;
 	aux = 0;
+	if (!(src) || (char*)src == (char*)empty)
+		return ((char*)dest);
 	while (dest[aux] && aux < len)
 	{
+		aux_d = 0;
 		if (dest[aux] == src[aux_d])
 		{
-			aux_d = 0;
 			while (dest[aux + aux_d] == src[aux_d]
-			&& (aux_d + aux) < len)
+			&& (aux + aux_d) < len)
 			{
 				if (src[aux_d + 1] == '\0')
 					return ((char*)(dest + aux));
