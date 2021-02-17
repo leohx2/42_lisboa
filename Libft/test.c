@@ -17,5 +17,14 @@
 
 int     main()
 {
-    printf("%s\n", ft_itoa(-255));
+    t_list  *test2 = NULL;
+
+    test2 = ft_lstnew((void*)0);
+    printf("%i\n", test2->content);
+	ft_lstadd_front(&test2, ft_lstnew((void*)1));
+    printf("%i\n", test2->content);
+	ft_lstadd_front(&test2, ft_lstnew((void*)2));
+    printf("%i\n", test2->content);
+    printf("%i  SIZE\n%i   LAST\n", ft_lstsize(test2), ft_lstlast(test2)->content);
+    free(test2);
 }
