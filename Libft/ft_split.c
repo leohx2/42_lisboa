@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 #include <stdio.h>
 
 static int		ft_is_in_charset(char c, char charset)
@@ -37,15 +37,14 @@ static void		ft_final_part(char **str_return, char *str, char charset)
 			{
 				str_return[aloc][count] = str[index];
 				count++;
-				if (!str[index + 1])
-					break ;
 				index++;
 			}
 			str_return[aloc][count] = 0;
 			aloc++;
 			count = 0;
 		}
-		index++;
+		if(str[index])
+			index++;
 	}
 	str_return[aloc] = 0;
 }
@@ -81,8 +80,10 @@ static int		ft_frst_size(char *str, char charset)
 	int	size;
 	int	index;
 	int	aux;
+	int	aux2;
 
 	aux = 0;
+	aux2 = 0;
 	index = 0;
 	size = 0;
 	while (str[index] != '\0')
@@ -91,6 +92,7 @@ static int		ft_frst_size(char *str, char charset)
 			aux++;
 		if (ft_is_in_charset(str[index], charset) == 1)
 		{
+			aux2++;
 			if (aux > 0 && str[index + 1] != '\0' &&
 			ft_is_in_charset(str[index + 1], charset) == 0)
 			{
@@ -102,6 +104,8 @@ static int		ft_frst_size(char *str, char charset)
 		}
 		index++;
 	}
+	if (size == 0 && aux2 > 0)
+		return (-1);
 	return (size + 2);
 }
 
@@ -109,9 +113,24 @@ char			**ft_split(char const *s, char c)
 {
 	char	**str_return;
 	int		first_size;
+	int		aux;
 
+	aux = 0;
 	first_size = ft_frst_size((char*)s, c);
-	str_return = malloc(sizeof(char *) * first_size);
+	if (first_size == -1)
+		return (0);
+	if(first_size == 2)
+	{
+		str_return = (char**)malloc(sizeof(char*) * 1);
+		str_return[0] = (char*)malloc(sizeof(char) * ft_strlen(s));
+		while (s[aux])
+		{
+			str_return[0][aux] = s[aux];
+			aux++;
+		}
+		return (str_return);
+	}
+	str_return = (char**)malloc(sizeof(char *) * first_size);
 	ft_scnd_size(str_return, (char*)s, c);
 	ft_final_part(str_return, (char*)s, c);
 	return (str_return);
