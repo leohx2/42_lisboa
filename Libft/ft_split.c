@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdlib.h>
 #include <stdio.h>
 
 static int		ft_is_in_charset(char c, char charset)
@@ -108,35 +108,11 @@ static int		ft_frst_size(char *str, char charset)
 char			**ft_split(char const *s, char c)
 {
 	char	**str_return;
-	int		count;
-	char	**aux;
+	int		first_size;
 
-	count = ft_frst_size((char*)s, c);
-	printf("%i CONT\n", count);
-	str_return = (char**)malloc(sizeof(char *) * count);
+	first_size = ft_frst_size((char*)s, c);
+	str_return = malloc(sizeof(char *) * first_size);
 	ft_scnd_size(str_return, (char*)s, c);
 	ft_final_part(str_return, (char*)s, c);
-	count = 0;
-	while (str_return[count])
-	{
-		printf("entra aqui %i count\n", count);
-		count++;
-		if (!(str_return[count]))
-		{
-			printf("entra aqui %i count\n", count);
-			aux = (char**)malloc(sizeof(char*) * count);
-			aux[count] = 0;
-			printf("%s\n", aux[count]);
-			free(str_return[count]);
-			while (count--)
-			{
-				printf("entra aqui %i count\n", count);
-				aux[count] = ft_strdup(str_return[count]);
-				free(str_return[count]);
-			}
-			free(str_return);
-			return (aux);
-		}
-	}
 	return (str_return);
 }
