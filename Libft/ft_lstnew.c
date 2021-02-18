@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 18:12:47 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/02/17 18:12:47 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/02/18 19:13:58 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,5 @@ t_list	*ft_lstnew(void *content)
 		return (NULL);
 	to_return->content = content;
 	to_return->next = 0;
-	return(to_return);
+	return (to_return);
 }

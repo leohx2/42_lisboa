@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 18:20:40 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/02/17 18:20:40 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/02/18 19:13:29 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,5 @@ void	ft_lstadd_front(t_list **lst, t_list *new)
 			new->next = *lst;
 		}
 		*lst = new;
-	}	
+	}
 }
