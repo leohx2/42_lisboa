@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/13 13:58:54 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/02/13 18:15:14 by lrosendo         ###   ########.fr       */
+/*   Created: 2021/02/14 16:04:56 by lrosendo          #+#    #+#             */
+/*   Updated: 2021/02/15 18:55:10 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
+#include <fcntl.h>
 #include "libft.h"
+#include <string.h>
 
-char	*ft_strchr(const char *s, int c)
+
+int main(void)
 {
-	int aux;
-
-	aux = 0;
-	while (s[aux])
-	{
-		if (s[aux] == (char)c)
-			return ((char*)(s + aux));
-		aux++;
-	}
-	if (s[aux] == (char)c)
-		return ((char*)(s + aux));
-	return (NULL);
+	
+	printf("%s\n",ft_itoa(22));
+	return (0);
 }
