@@ -18,7 +18,8 @@
 
 int main(void)
 {
-	
+	printf("%s\n",ft_itoa(0));
 	printf("%s\n",ft_itoa(22));
+	printf("%s\n",ft_itoa(220));
 	return (0);
 }

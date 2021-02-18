@@ -114,5 +114,6 @@ char			**ft_split(char const *s, char c)
 	str_return = (char**)malloc(sizeof(char *) * first_size);
 	ft_scnd_size(str_return, (char*)s, c);
 	ft_final_part(str_return, (char*)s, c);
+	printf("Str_len %i \n", ft_strlen(str_return));
 	return (str_return);
 }
