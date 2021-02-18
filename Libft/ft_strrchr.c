@@ -21,10 +21,10 @@ char	*ft_strrchr(const char *s, int c)
 	to_return = -1;
 	while (s[aux])
 	{
-		if (s[aux] == c)
+		if (s[aux] == (char)c)
 			to_return = aux;
 		aux++;
-		if (s[aux] == c)
+		if (s[aux] == (char)c)
 			to_return = aux;
 	}
 	if (to_return == -1)
