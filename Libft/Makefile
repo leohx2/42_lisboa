@@ -26,6 +26,8 @@ ${NAME}: ${OBJ}
 
 all: ${NAME}
 
+bonus: ${NAME}
+
 clean:
 	rm -f ${OBJ}
 
