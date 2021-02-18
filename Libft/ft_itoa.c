@@ -18,7 +18,7 @@ static int		ft_value(int n)
 
 	count = 1;
 	while (n > 9)
-	{	
+	{
 		count *= 10;
 		n /= 10;
 	}
@@ -50,7 +50,11 @@ char			*ft_itoa(int n)
 	if (!(str_aux = (char*)malloc(12 * sizeof(char))))
 		return (0);
 	if (n == -2147483648)
-		return (str_aux = "-2147483648\0");
+	{
+		to_return = ft_strdup("-2147483648");
+		free(str_aux);
+		return (to_return);
+	}
 	if (n < 0)
 	{
 		str_aux[aux++] = '-';

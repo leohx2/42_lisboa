@@ -18,8 +18,9 @@
 
 int main(void)
 {
-	printf("%s\n",ft_itoa(0));
-	printf("%s\n",ft_itoa(22));
-	printf("%s\n",ft_itoa(220));
+	char **test;
+	test = ft_split("opaaa", 'o');
+	printf("%s\n",test[0]);
+	free(test);
 	return (0);
 }
