@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdio.h>
+##include "libft.h"
 
 static int		ft_is_in_charset(char c, char charset)
 {
@@ -84,16 +83,15 @@ static int		ft_frst_size(char *str, char charset)
 	aux2 = 0;
 	index = 0;
 	size = 0;
-	while (str[index] != '\0')
+	while (str[index])
 	{
-		if (ft_is_in_charset(str[index], charset) == 1)
+		if (ft_is_in_charset(str[index], charset))
 		{
 			aux2++;
 			if (index > 0 && str[index + 1] != '\0' &&
 			ft_is_in_charset(str[index + 1], charset) == 0)
 			{
-				while (ft_is_in_charset(str[index], charset) == 0
-				&& str[index + 1] != '\0')
+				while (!ft_is_in_charset(str[index], charset) && str[index + 1])
 					index++;
 				size++;
 			}
@@ -113,9 +111,9 @@ char			**ft_split(char const *s, char c)
 
 	aux = 0;
 	first_size = ft_frst_size((char*)s, c);
-	if ((char*)s == 0 || first_size == -1)
+	if (first_size == -1 || *s == 0)
 	{
-		str_return = (char**)malloc(sizeof(char) * 1);
+		str_return = (char**)malloc(sizeof(char));
 		str_return[0] = 0;
 		return (str_return);
 	}
