@@ -63,5 +63,6 @@ char			*ft_itoa(int n)
 	nmbr_size = ft_value(n);
 	ft_make_str(nmbr_size, n, str_aux, aux);
 	to_return = ft_strdup(str_aux);
+	free(str_aux);
 	return (to_return);
 }
