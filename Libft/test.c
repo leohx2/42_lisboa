@@ -1,33 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/13 13:59:30 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/02/13 18:15:51 by lrosendo         ###   ########.fr       */
+/*   Created: 2021/02/14 16:04:56 by lrosendo          #+#    #+#             */
+/*   Updated: 2021/02/15 18:55:10 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
+#include <string.h>
+#include <fcntl.h>
 #include "libft.h"
 
-char	*ft_strrchr(const char *s, int c)
+int     main()
 {
-	int	aux;
-	int	to_return;
-
-	aux = 0;
-	to_return = -1;
-	while (s[aux])
-	{
-		if (s[aux] == (char)c)
-			to_return = aux;
-		aux++;
-	}
-	if (s[aux] == (char)c)
-		to_return = aux;
-	if (to_return == -1)
-		return (0);
-	return ((char*)(s + to_return));
+    printf("RESULTADO %s\n", ft_itoa(10));
 }

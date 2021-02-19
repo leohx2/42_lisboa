@@ -17,22 +17,24 @@ static int		ft_value(int n)
 	int	count;
 
 	count = 1;
-	while (n > 9)
-	{
+	while (n / count > 9)
 		count *= 10;
-		n /= 10;
-	}
 	return (count);
 }
 
 static void		ft_make_str(int nmbr_size, int n, char *str_aux, int aux)
 {
-	while (n > 9)
+	while (nmbr_size >= 10)
 	{
 		str_aux[aux] = (n / nmbr_size) + 48;
 		aux++;
 		n = n % nmbr_size;
 		nmbr_size /= 10;
+	}
+	if (n >= 10)
+	{
+		str_aux[aux] = (n / 10) + 48;
+		aux++;
 	}
 	str_aux[aux] = (n % 10) + 48;
 	aux++;

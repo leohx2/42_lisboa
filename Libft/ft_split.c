@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-##include "libft.h"
+#include "libft.h"
 
 static int		ft_is_in_charset(char c, char charset)
 {
@@ -107,9 +107,7 @@ char			**ft_split(char const *s, char c)
 {
 	char	**str_return;
 	int		first_size;
-	int		aux;
 
-	aux = 0;
 	first_size = ft_frst_size((char*)s, c);
 	if (first_size == -1 || *s == 0)
 	{

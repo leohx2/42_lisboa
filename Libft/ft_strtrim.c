@@ -43,7 +43,7 @@ char			*ft_strtrim(char const *s1, char const *set)
 		}
 		s1++;
 	}
-	to_return = (char*)calloc(sizeof(char), ft_strlen(str_aux));
+	to_return = (char*)ft_calloc(sizeof(char), ft_strlen(str_aux));
 	ft_memcpy(to_return, str_aux, ft_strlen(str_aux));
 	free(str_aux);
 	to_return[aux] = '\0';

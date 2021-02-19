@@ -15,12 +15,12 @@
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	char	*s1_aux;
-	char	*s2_aux;
-	size_t	aux;
+	unsigned char	*s1_aux;
+	unsigned char	*s2_aux;
+	size_t			aux;
 
-	s1_aux = (char*)s1;
-	s2_aux = (char*)s2;
+	s1_aux = (unsigned char*)s1;
+	s2_aux = (unsigned char*)s2;
 	aux = 0;
 	if (n == 0)
 		return (0);

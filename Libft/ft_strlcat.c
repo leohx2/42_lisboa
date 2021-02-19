@@ -36,7 +36,7 @@ size_t			ft_strlcat(char *dst, const char *src, size_t size)
 		return (size + src_size);
 	else
 		to_return = dst_size + src_size;
-	while (index < size - 1)
+	while (index + 1 < size && src[index - dst_size])
 	{
 		dst[index] = src[index - dst_size];
 		index++;
