@@ -23,7 +23,7 @@ unsigned int len)
 		return (to_return = (char*)ft_calloc(2, 1));
 	str_aux = (char*)malloc((len - start + 1) * sizeof(char));
 	aux = 0;
-	while (start <= len && s[start])
+	while (aux < len && s[start])
 	{
 		str_aux[aux] = s[start];
 		start++;
