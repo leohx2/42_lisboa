@@ -26,26 +26,47 @@ static int		ft_isset(char c, char const *set)
 	return (0);
 }
 
-char			*ft_strtrim(char const *s1, char const *set)
+static int		ft_begin(char const *c, char const *set)
 {
-	char	*to_return;
-	int		aux;
-	char	*str_aux;
+	int	aux;
 
 	aux = 0;
-	str_aux = (char*)malloc(ft_strlen(s1) * sizeof(char));
-	while (*s1)
+	while (c[aux] && ft_isset((char)c[aux], set))
+		aux++;
+	return (aux);
+}
+
+int				ft_islast(char const *s1, char const *set, int index)
+{
+	while (s1[index] && ft_isset((char)s1[index], set))
 	{
-		if (!(ft_isset(*s1, set)))
-		{
-			str_aux[aux] = *s1;
-			aux++;
-		}
-		s1++;
+		index++;
+		if (s1[index] == 0)
+			return (1);
 	}
-	to_return = (char*)ft_calloc(sizeof(char), ft_strlen(str_aux));
-	ft_memcpy(to_return, str_aux, ft_strlen(str_aux));
-	free(str_aux);
-	to_return[aux] = '\0';
+	return (0);
+}
+
+char			*ft_strtrim(char const *s1, char const *set)
+{
+	int		aux;
+	int		aux2;
+	char	*to_return;
+
+	aux = ft_begin(s1, set);
+	aux2 = aux;
+	while (s1[aux2])
+	{
+		if (ft_isset((char)s1[aux2], set))
+			if (ft_islast(s1, set, aux2))
+			{
+				to_return = (char*)malloc((aux2 - aux) * sizeof(char));
+				ft_memcpy(to_return, (s1 + aux), (aux2 - aux));
+				to_return[aux2] = 0;
+				return (to_return);
+			}
+		aux2++;
+	}
+	to_return = ft_strdup((char*)(s1 + aux));
 	return (to_return);
 }

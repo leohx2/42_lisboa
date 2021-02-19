@@ -11,15 +11,20 @@
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include <string.h>
 #include <fcntl.h>
-#include <unistd.h>
 #include "libft.h"
 
 int     main()
 {
-    char **test;
-
-    test = ft_split(" This is a test.", '8');
-    printf("Comeca aqui\n%s\n%s\n", test[0],test[1]);
-    free (test);
+    char	set [] = "\t \n";
+    char *s1 = ft_strdup(" \n \t lorem ipsum dolor sit amet \n \n");
+	printf("Resultado:\n**%s**\n", ft_strtrim(s1, set));
+    free(s1);
+    s1 = ft_strdup("LOURES ipsum dolor sit amet \n \t ");
+    printf("Resultado:\n**%s**\n", ft_strtrim(s1, set));
+    free(s1);
+    s1 = ft_strdup("  \n  \t  LAURA \n ipsum \t dolor \n sit \t amet  \t \n ");
+    printf("Resultado:\n**%s**\n", ft_strtrim(s1, set));
+    free(s1);
 }
