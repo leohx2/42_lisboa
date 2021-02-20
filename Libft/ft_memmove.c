@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 13:58:35 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/02/18 19:15:57 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/02/20 15:40:10 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 
 	s1 = dest;
 	s2 = src;
+	if (!src && !dest)
+		return (NULL);
 	if (s1 < s2)
 	{
 		while (n--)

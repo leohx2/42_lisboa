@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 13:58:16 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/02/18 19:15:15 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/02/20 15:38:39 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	*ft_memccpy(void *dest, const void *src, int c, size_t n)
 	while (aux < n)
 	{
 		*(char*)(dest + aux) = *(char*)(src + aux);
-		if (*(char*)(dest + aux) == c)
+		if (*(const char*)(src + aux) == (char)c)
 			return (dest + aux + 1);
 		aux++;
 	}
