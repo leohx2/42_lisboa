@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 13:59:13 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/02/13 18:15:33 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/02/20 15:52:27 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 
 	count = 0;
 	index = 0;
+	if (!src && !dst)
+		return (0);
 	while (src[index])
-	{
 		index++;
-	}
 	if (size == 0)
 		return (index);
 	while (count < (size - 1) && src[count])

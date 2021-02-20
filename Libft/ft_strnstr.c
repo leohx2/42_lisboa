@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 13:59:26 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/02/15 19:01:57 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/02/20 16:07:02 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,10 @@ char			*ft_strnstr(const char *dest, const char *src, size_t len)
 {
 	size_t			aux;
 	size_t			aux_d;
-	const char		*empty;
 
-	empty = (char*)"";
 	aux_d = 0;
 	aux = 0;
-	if (!(src) || (char*)src == (char*)empty)
+	if (*src == 0)
 		return ((char*)dest);
 	while (dest[aux] && aux < len)
 	{

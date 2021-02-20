@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 14:49:58 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/02/13 18:14:10 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/02/20 16:19:20 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	ft_atoi(const char *str)
 {
-	int signal;
-	int result;
+	int				signal;
+	long long int	result;
 
 	signal = 1;
 	result = 0;
@@ -33,6 +33,10 @@ int	ft_atoi(const char *str)
 	{
 		result = result * 10 + *str - 48;
 		str++;
+		if (result * signal < -2147483648)
+			return (0);
+		if (result * signal > 2147483648)
+			return (-1);
 	}
 	return (result * signal);
 }
