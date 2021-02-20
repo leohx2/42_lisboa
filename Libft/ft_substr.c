@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 19:28:19 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/02/20 15:14:44 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/02/20 17:38:04 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ unsigned int len)
 
 	if (ft_strlen(s) < start)
 		return (to_return = (char*)ft_calloc(2, 1));
-	str_aux = (char*)malloc((len - start + 1) * sizeof(char));
+	if(!(str_aux = (char*)ft_calloc((len - start + 2), sizeof(char))))
+		return(NULL);
 	aux = 0;
 	while (aux < len && s[start])
 	{
@@ -30,9 +31,7 @@ unsigned int len)
 		aux++;
 	}
 	str_aux[aux] = 0;
-	to_return = (char*)malloc((ft_strlen(str_aux) * sizeof(char)));
-	ft_memcpy(to_return, str_aux, ft_strlen(str_aux));
-	to_return[aux] = 0;
+	to_return = ft_strdup(str_aux);
 	free(str_aux);
 	return (to_return);
 }
