@@ -6,11 +6,12 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 14:15:24 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/02/15 18:51:09 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/02/21 14:05:59 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
 static int		ft_is_in_charset(char c, char charset)
 {
@@ -83,20 +84,19 @@ static int		ft_frst_size(char *str, char charset)
 	aux2 = 0;
 	index = 0;
 	size = 0;
-	while (str[index])
+	while (str[index++])
 	{
 		if (ft_is_in_charset(str[index], charset))
 		{
 			aux2++;
-			if (index > 0 && str[index + 1] != '\0' &&
-			ft_is_in_charset(str[index + 1], charset) == 0)
+			if ((str[index + 1] && !ft_is_in_charset(str[index + 1], charset))
+			|| (str[index + 1] && !ft_is_in_charset(str[index - 1], charset)))
 			{
 				while (!ft_is_in_charset(str[index], charset) && str[index + 1])
 					index++;
 				size++;
 			}
 		}
-		index++;
 	}
 	if (size == 0 && aux2 > 0)
 		return (-1);
