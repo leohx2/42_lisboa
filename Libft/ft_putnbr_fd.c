@@ -6,29 +6,45 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 16:53:40 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/02/15 18:58:31 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/02/21 16:59:13 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-int		ft_size10(int n)
+static int		ft_size10(int n)
 {
-	int count;
+	int	count;
 
 	count = 1;
-	while (n > 9)
-	{
+	while (n / count > 9)
 		count *= 10;
-		n /= 10;
-	}
 	return (count);
 }
 
-void	ft_putnbr_fd(int n, int fd)
+static void	ft_putfd(int size, int fd, int n)
+{
+	char c;
+	
+	while (size >= 10)
+	{
+		c = (n / size) + 48;
+		write(fd, &c, sizeof(char));
+		n = n % size;
+		size /= 10;
+	}
+	if (n >= 10)
+	{
+		c = (n / 10) + 48;
+		write(fd, &c, sizeof(char)); 
+	}
+	c = n + 48;
+	write(fd, &c, sizeof(char));
+}
+
+void		ft_putnbr_fd(int n, int fd)
 {
 	int		size;
-	char	c;
 
 	if (n == -2147483648)
 		write(fd, "-2147483648", (sizeof(char) * 11));
@@ -40,14 +56,6 @@ void	ft_putnbr_fd(int n, int fd)
 			write(fd, "-", sizeof(char));
 		}
 		size = ft_size10(n);
-		while (n > 9)
-		{
-			c = (n / size) + 48;
-			write(fd, &c, sizeof(char));
-			n = n % size;
-			size /= 10;
-		}
-		c = n + 48;
-		write(fd, &c, sizeof(char));
+		ft_putfd(size, fd, n);
 	}
 }

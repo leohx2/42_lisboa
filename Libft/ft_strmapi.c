@@ -6,24 +6,13 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 14:58:20 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/02/15 19:02:09 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/02/21 16:02:32 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
-static unsigned int		ft_strlen(char *str)
-{
-	unsigned int	count;
-
-	count = 0;
-	while (str[count])
-		count++;
-	return (count);
-}
-
-char					*ft_strmapi(char const *s,
-char (*f)(unsigned int, char))
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
 	char			*to_return;
 	unsigned int	aux;
@@ -31,13 +20,12 @@ char (*f)(unsigned int, char))
 
 	s_len = ft_strlen((char*)s);
 	aux = 0;
-	if (!(to_return = (char*)malloc(s_len * sizeof(char))))
+	if (!(to_return = (char*)ft_calloc(s_len + 1, sizeof(char))))
 		return (0);
 	while (s[aux])
 	{
 		to_return[aux] = (*f)(aux, s[aux]);
 		aux++;
 	}
-	to_return[aux] = '\0';
 	return (to_return);
 }

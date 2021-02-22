@@ -19,9 +19,9 @@ unsigned int len)
 	char				*to_return;
 	unsigned int		aux;
 
-	if (ft_strlen(s) < start)
+	if (ft_strlen(s) < start || len == 0)
 		return (to_return = (char*)ft_calloc(2, 1));
-	if(!(str_aux = (char*)ft_calloc((len - start + 2), sizeof(char))))
+	if (!(str_aux = (char*)ft_calloc((len - start + 2), sizeof(char))))
 		return(NULL);
 	aux = 0;
 	while (aux < len && s[start])
@@ -35,3 +35,4 @@ unsigned int len)
 	free(str_aux);
 	return (to_return);
 }
+

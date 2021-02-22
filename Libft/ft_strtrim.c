@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 19:14:31 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/02/20 11:30:16 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/02/21 17:02:19 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,8 @@ char			*ft_strtrim(char const *s1, char const *set)
 		if (ft_isset((char)s1[aux2], set))
 			if (ft_islast(s1, set, aux2))
 			{
-				to_return = (char*)malloc((aux2 - aux) * sizeof(char));
+				to_return = (char*)ft_calloc((aux2 - aux + 1), sizeof(char));
 				ft_memcpy(to_return, (s1 + aux), (aux2 - aux));
-				to_return[aux2] = 0;
 				return (to_return);
 			}
 		aux2++;

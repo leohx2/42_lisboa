@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 14:15:24 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/02/21 14:05:59 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/02/21 15:33:21 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,18 +111,19 @@ char			**ft_split(char const *s, char c)
 	first_size = ft_frst_size((char*)s, c);
 	if (first_size == -1 || *s == 0)
 	{
-		str_return = (char**)malloc(sizeof(char));
-		str_return[0] = 0;
+		if (!(str_return = (char**)ft_calloc(sizeof(char), 1)))
+			return (0);
 		return (str_return);
 	}
 	if (first_size == 2)
 	{
-		str_return = (char**)malloc(sizeof(char*) * 2);
-		str_return[1] = 0;
+		if (!(str_return = (char**)ft_calloc(sizeof(char*), 2)))
+			return (0);
 		str_return[0] = ft_strdup(s);
 		return (str_return);
 	}
-	str_return = (char**)malloc(sizeof(char *) * first_size);
+	if (!(str_return = (char**)malloc(sizeof(char *) * first_size)))
+		return (0);
 	ft_scnd_size(str_return, (char*)s, c);
 	ft_final_part(str_return, (char*)s, c);
 	return (str_return);
