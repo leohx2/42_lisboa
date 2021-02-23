@@ -5,126 +5,76 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/13 14:15:24 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/02/21 15:33:21 by lrosendo         ###   ########.fr       */
+/*   Created: 2021/02/23 18:48:01 by lrosendo          #+#    #+#             */
+/*   Updated: 2021/02/23 21:48:02 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
-
-static int		ft_is_in_charset(char c, char charset)
+int		ft_isset(char *s, char c)
 {
-	if (c == charset)
-		return (1);
-	return (0);
-}
-
-static void		ft_final_part(char **str_return, char *str, char charset)
-{
-	int	aloc;
-	int	count;
-	int index;
-
-	index = 0;
-	aloc = 0;
-	count = 0;
-	while (str[index])
-	{
-		if (ft_is_in_charset(str[index], charset) == 0)
-		{
-			while (ft_is_in_charset(str[index], charset) == 0 && str[index])
-			{
-				str_return[aloc][count] = str[index];
-				count++;
-				index++;
-			}
-			str_return[aloc][count] = 0;
-			aloc++;
-			count = 0;
-		}
-		if (str[index])
-			index++;
-	}
-	str_return[aloc] = 0;
-}
-
-static void		ft_scnd_size(char **str_return, char *str, char charset)
-{
-	int	count;
-	int	aloc;
-	int index;
-
-	index = 0;
-	aloc = 0;
-	count = 0;
-	while (str[index] != '\0')
-	{
-		if (ft_is_in_charset(str[index], charset) == 0)
-		{
-			while (ft_is_in_charset(str[index], charset) == 0 && str[index])
-			{
-				count++;
-				index++;
-			}
-			str_return[aloc] = (char*)malloc(count * sizeof(char));
-			aloc++;
-			count = 0;
-		}
-		index++;
-	}
-}
-
-static int		ft_frst_size(char *str, char charset)
-{
-	int	size;
-	int	index;
-	int	aux2;
+	int count;
+	int aux;
+	int aux2;
 
 	aux2 = 0;
-	index = 0;
-	size = 0;
-	while (str[index++])
+	aux = 0;
+	count = 0;
+	while (s[count])
 	{
-		if (ft_is_in_charset(str[index], charset))
-		{
+		if (s[count] == c && s[count + 1] != c && s[count + 1])
+			aux++;
+		else if (s[count] != c)
 			aux2++;
-			if ((str[index + 1] && !ft_is_in_charset(str[index + 1], charset))
-			|| (str[index + 1] && !ft_is_in_charset(str[index - 1], charset)))
-			{
-				while (!ft_is_in_charset(str[index], charset) && str[index + 1])
-					index++;
-				size++;
-			}
-		}
+		count++;
 	}
-	if (size == 0 && aux2 > 0)
-		return (-1);
-	return (size + 2);
+	if (aux <= 1 && aux2 > 0)
+		return (2);
+	if (aux == 0 && aux2 == 0)
+		return (1);
+	else
+		return (aux + 2);
 }
 
-char			**ft_split(char const *s, char c)
+void	ft_set_mem(char **to_return, int size, char *s, char c)
 {
-	char	**str_return;
-	int		first_size;
+	int start;
+	int end;
+	int aux;
 
-	first_size = ft_frst_size((char*)s, c);
-	if (first_size == -1 || *s == 0)
+	aux = 0;
+	start = 0;
+	end = 0;
+	while (s[start] && aux < size)
 	{
-		if (!(str_return = (char**)ft_calloc(sizeof(char), 1)))
-			return (0);
-		return (str_return);
+		end = 0;
+		if (s[start] != c)
+		{
+			while (s[start + end] != c && s[start + end])
+				end++;
+			to_return[aux] = ft_substr(s, start, end);
+			aux++;
+			start += end;
+		}
+		if (s[start])
+			start++;
 	}
-	if (first_size == 2)
-	{
-		if (!(str_return = (char**)ft_calloc(sizeof(char*), 2)))
-			return (0);
-		str_return[0] = ft_strdup(s);
-		return (str_return);
-	}
-	if (!(str_return = (char**)malloc(sizeof(char *) * first_size)))
-		return (0);
-	ft_scnd_size(str_return, (char*)s, c);
-	ft_final_part(str_return, (char*)s, c);
-	return (str_return);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	char **to_return;
+	int aux;
+
+	aux = 0;
+	if (!s)
+		return (NULL);
+	to_return = (char**)ft_calloc(ft_isset((char*)s, c) + 1, sizeof(char));
+	if(!to_return)
+		return (NULL);
+	if (ft_isset((char*)s, c) == 1)
+		return (to_return);
+	ft_set_mem(to_return, ft_isset((char*)s, c), (char*)s, c);
+	return (to_return);
 }
