@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 18:48:01 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/02/24 13:44:40 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/02/24 13:55:47 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static void	ft_be_free_like_a_bird(char **to_free)
 		i++;
 	while (i >= 0)
 	{
-		free(resultado[i]);
+		free(to_free[i]);
 		i--;
 	}
 }
@@ -94,6 +94,7 @@ char	**ft_split(char const *s, char c)
 		return (to_return);
 	if(!(ft_set_mem(to_return, ft_isset((char*)s, c), (char*)s, c)))
 	{
+		ft_be_free_like_a_bird(to_return);
 		free(to_return);
 		return (NULL);
 	}
