@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 18:48:01 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/02/23 21:48:02 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/02/24 13:09:03 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ int		ft_isset(char *s, char c)
 	count = 0;
 	while (s[count])
 	{
-		if (s[count] == c && s[count + 1] != c && s[count + 1])
+		if (s[count] == c && s[count + 1] != c && s[count + 1] && aux2 > 0)
 			aux++;
 		else if (s[count] != c)
 			aux2++;
 		count++;
 	}
-	if (aux <= 1 && aux2 > 0)
+	if (aux == 0 && aux2 > 0)
 		return (2);
 	if (aux == 0 && aux2 == 0)
 		return (1);
@@ -70,7 +70,7 @@ char	**ft_split(char const *s, char c)
 	aux = 0;
 	if (!s)
 		return (NULL);
-	to_return = (char**)ft_calloc(ft_isset((char*)s, c) + 1, sizeof(char));
+	to_return = (char**)ft_calloc(ft_isset((char*)s, c), sizeof(char*));
 	if(!to_return)
 		return (NULL);
 	if (ft_isset((char*)s, c) == 1)
