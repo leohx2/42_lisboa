@@ -6,13 +6,13 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 18:48:01 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/02/24 13:09:03 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/02/24 13:44:40 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
-int		ft_isset(char *s, char c)
+
+static int	ft_isset(char *s, char c)
 {
 	int count;
 	int aux;
@@ -37,7 +37,7 @@ int		ft_isset(char *s, char c)
 		return (aux + 2);
 }
 
-void	ft_set_mem(char **to_return, int size, char *s, char c)
+static int	ft_set_mem(char **to_return, int size, char *s, char c)
 {
 	int start;
 	int end;
@@ -54,11 +54,28 @@ void	ft_set_mem(char **to_return, int size, char *s, char c)
 			while (s[start + end] != c && s[start + end])
 				end++;
 			to_return[aux] = ft_substr(s, start, end);
+			if (!to_return[aux])
+				return (0);
 			aux++;
 			start += end;
 		}
 		if (s[start])
 			start++;
+	}
+	return (1);
+}
+
+static void	ft_be_free_like_a_bird(char **to_free)
+{
+	int i;
+
+	i = 0;
+	while (to_free[i])
+		i++;
+	while (i >= 0)
+	{
+		free(resultado[i]);
+		i--;
 	}
 }
 
@@ -75,6 +92,10 @@ char	**ft_split(char const *s, char c)
 		return (NULL);
 	if (ft_isset((char*)s, c) == 1)
 		return (to_return);
-	ft_set_mem(to_return, ft_isset((char*)s, c), (char*)s, c);
+	if(!(ft_set_mem(to_return, ft_isset((char*)s, c), (char*)s, c)))
+	{
+		free(to_return);
+		return (NULL);
+	}
 	return (to_return);
 }
