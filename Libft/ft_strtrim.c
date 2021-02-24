@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 19:14:31 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/02/24 13:20:18 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/02/24 14:44:59 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,10 @@ char			*ft_strtrim(char const *s1, char const *set)
 	int		aux2;
 	char	*to_return;
 
-	aux = ft_begin(s1, set);
-	aux2 = aux;
 	if (!s1)
 		return (NULL);
+	aux = ft_begin(s1, set);
+	aux2 = aux;
 	while (s1[aux2])
 	{
 		if (ft_isset((char)s1[aux2], set))
