@@ -6,14 +6,14 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 10:43:14 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/03/02 21:01:24 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/03/02 21:05:20 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stdio.h>
 
-char *ft_befornew(char *str)
+char	*ft_befornew(char *str)
 {
 	int		index;
 	char	*temp;
@@ -36,7 +36,7 @@ char *ft_befornew(char *str)
 	return (temp);
 }
 
-char *ft_afternew(char *str)
+char	*ft_afternew(char *str)
 {
 	int 	index;
 	char	*temp;
@@ -64,7 +64,7 @@ char *ft_afternew(char *str)
 	return (temp);
 }
 
-int	get_next_line(int fd, char **line)
+int		get_next_line(int fd, char **line)
 {
 	static char	*save[4096];
 	int			r;
