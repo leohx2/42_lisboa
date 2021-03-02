@@ -36,7 +36,7 @@ ${NAME}: ${OBJ}
 %.o: %.c 
 	gcc ${FLAGS} -c -o $@ $<
 
-bonus: ${BONUS} ${BONUS_OBJS}
+bonus: ${NAME} ${BONUS} ${BONUS_OBJS}
 	ar -rs ${NAME} ${OBJ} ${BONUS_OBJS}
 
 clean:
