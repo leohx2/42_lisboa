@@ -6,12 +6,12 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 10:38:00 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/03/08 12:16:58 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/03/08 15:32:38 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 # include <fcntl.h>
 # include <stdlib.h>
 # include <unistd.h>
