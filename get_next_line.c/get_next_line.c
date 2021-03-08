@@ -6,12 +6,11 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 10:43:14 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/03/02 21:05:20 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/03/08 10:35:57 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
 
 char	*ft_befornew(char *str)
 {
@@ -26,12 +25,7 @@ char	*ft_befornew(char *str)
 	temp = (char*)malloc(sizeof(char) * (index + 1));
 	if (!temp)
 		return (NULL);
-	index = 0;
-	while (str[index] && str[index] != '\n')
-	{
-		temp[index] = str[index];
-		index++;
-	}
+	ft_memcpy(temp, str, index);
 	temp[index] = 0;
 	return (temp);
 }
@@ -40,28 +34,38 @@ char	*ft_afternew(char *str)
 {
 	int 	index;
 	char	*temp;
-	int		index_temp;
 
-	index_temp = 0;
 	index = 0;
-	if (!str)
-		return (NULL);
 	while (str[index] && str[index] != '\n')
 		index++;
-	if (!str[index])
+	if (!str[index] || !str[index + 1])
 	{
 		free(str);
-		return (0);
-	}
-	temp = (char*)malloc(sizeof(char) * (ft_strlen(str) - index + 1));
-	if (!temp)
 		return (NULL);
+	}
 	index++;
-	while (str[index])
-		temp[index_temp++] = str[index++];
-	temp[index_temp] = 0;
+	temp = ft_strdup(str + index);
 	free(str);
-	return (temp);
+	return(temp);
+}
+
+void	ft_set_loop(char *buff, char **save, int fd, int *r)
+{
+	char *test;
+	
+	while (!ft_havenew(save[fd]) && *r != 0)
+	{
+		if ((*r = read(fd, buff, BUFFER_SIZE)) == -1)
+		{
+			free(buff);
+			return ;
+		}
+		buff[*r] = '\0';
+		test = ft_strjoin(save[fd], buff);
+		free (save[fd]);
+		save[fd] = ft_strdup(test);
+		free(test);
+	}
 }
 
 int		get_next_line(int fd, char **line)
@@ -75,16 +79,11 @@ int		get_next_line(int fd, char **line)
 	if (!(buff = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1))))
 		return (-1);
 	r = 1;
-	while (!ft_havenew(save[fd]) && r != 0)
-	{
-		if ((r = read(fd, buff, BUFFER_SIZE)) < 0)
-		{
-			free(buff);
-			return (-1);
-		}
-		buff[r] = '\0';
-		save[fd] = ft_strjoin(save[fd], buff);
-	}
+	if (!save[fd])
+		save[fd] = malloc(sizeof(char) * BUFFER_SIZE);
+	ft_set_loop(buff, save, fd, &r);
+	if (r == -1)
+		return (-1);
 	free(buff);
 	*line = ft_befornew(save[fd]);
 	save[fd] = ft_afternew(save[fd]);

@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 11:55:46 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/03/02 20:58:59 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/03/08 09:24:35 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,10 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 int		ft_havenew(char *s)
 {
 	int aux;
-
 	aux = 0;
 	if (!s)
 		return (0);
-	while (s[aux])
+	while (s[aux] != '\0')
 	{
 		if (s[aux] == '\n')
 			return (1);
@@ -56,16 +55,17 @@ size_t	ft_strlen(const char *s)
 	return (size);
 }
 
-char	*ft_strdup(const char *s)
+char	*ft_strdup(char *s)
 {
 	int		aux;
 	char	*to_return;
 
 	aux = 0;
-	if (!(to_return = (char*)malloc(ft_strlen((char*)s) + 1 * sizeof(char))))
+	to_return = (char*)malloc((ft_strlen(s) + 1 ) * sizeof(char));
+	if (!(to_return))
 		return (0);
-	to_return[ft_strlen((char*)s)] = 0;
-	ft_memcpy(to_return, s, ft_strlen((char*)s));
+	to_return[ft_strlen(s)] = 0;
+	ft_memcpy(to_return, s, ft_strlen(s));
 	return (to_return);
 }
 
