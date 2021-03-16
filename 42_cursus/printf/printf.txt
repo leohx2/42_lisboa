@@ -1,0 +1,20 @@
+- ->
+0 ->
+. ->
+* ->
+
+São todas as flags pedidas no mandatório. A intenção é retirar desse bloco de notas uma a uma.
+
+ideia para o começo:
+1 - entender como os argumentos variaveis funcionam.
+resolução:
+É necessario uma especie de casting para passar o argumento para uma variavel, o principal motivo double
+% é justamente isso. Ou seja, baseado no que vem após o %, seja s, d, i, ou o q for, devemos fazer
+va_arg(list, TYPE_OF), caso seja %s, va_arg(list, char*), se for d, va_arg(list, double), etc...
+
+2 - começar a encontrar os % em relação aos argumentos, verificar se há o mesmo nmro.
+resolução:
+Caso haja mais chamadas do va_arg do que argumentos de fato, o argumento passado em sequencia equi-
+vale a (NULL), assim podemos verificar se for NULL podemos retornar um erro.
+
+3 - Possívelmente usar o strchar poderá ser bem útil.
