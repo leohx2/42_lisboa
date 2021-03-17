@@ -1,6 +1,10 @@
-- ->
-0 ->
-. ->
+- -> alinha para a esquerda
+0 -> preenche com 0 (para a esquerda) desde q seja especificado a quantidade de 0 para o fazer, exemplo:
+caso seja um %05d temos de verificar o se a string gerada pelo %d tem um len maior q 5, se for menor,
+não fara diferença, 0 sera somente colocado caso tenho um len maior do q o len da string escrita,
+e devem ser colocados apenas os sobressalentes. se %d fosse um 3, seria 00003, porem se %d fosse
+10000, nada seria mudado. Caso haja a flag -, esta fica cancelada automaticamente.
+. ->preenche tudo a sua esquerda com 0 e ignora o a flag -.
 * ->
 
 São todas as flags pedidas no mandatório. A intenção é retirar desse bloco de notas uma a uma.
@@ -12,9 +16,8 @@ resolução:
 % é justamente isso. Ou seja, baseado no que vem após o %, seja s, d, i, ou o q for, devemos fazer
 va_arg(list, TYPE_OF), caso seja %s, va_arg(list, char*), se for d, va_arg(list, double), etc...
 
-2 - começar a encontrar os % em relação aos argumentos, verificar se há o mesmo nmro.
-resolução:
-Caso haja mais chamadas do va_arg do que argumentos de fato, o argumento passado em sequencia equi-
-vale a (NULL), assim podemos verificar se for NULL podemos retornar um erro.
+2 - Possívelmente usar o strchar poderá ser bem útil.
 
-3 - Possívelmente usar o strchar poderá ser bem útil.
+3 - Para usar uma va_list dentro de um função que realmente "passa" para o argumento seguinte, temos
+de usar chamar ela como parametro pointer de um va_list -> void whatever(va_list *list) <- desse modo
+toda alteração feita dentro da func continua presente após o fim da mesma :D.

@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 08:43:43 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/03/16 13:29:37 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/03/17 09:57:59 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,5 @@
 
 int main ()
 {
-	size_t Gb = 1024*1024*1024; // Falta encontrar uma solução para o %p
-	char *a = (char *)malloc(2 * Gb * sizeof(char));
-	char *b = (char *)malloc(2 * Gb * sizeof(char));
-	ft_printf("ft_printf a = %p\n", a);
-	ft_printf("ft_printf b = %p\n", b);
-	printf("printf a = %p\n", a);
-	printf("printf b = %p\n", b); 
-	free(a);
-	free(b);
+	ft_printf("%00----000.9x\n%00---00.8X\n%----.7x",15, 15, 15);
 }
-
