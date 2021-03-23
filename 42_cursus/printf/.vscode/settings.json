@@ -1,6 +1,7 @@
 {
 	"files.associations": {
 		"unistd.h": "c",
-		"bitset": "c"
+		"bitset": "c",
+		"ft_printf.h": "c"
 	}
 }

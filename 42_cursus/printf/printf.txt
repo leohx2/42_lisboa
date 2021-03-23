@@ -21,3 +21,7 @@ va_arg(list, TYPE_OF), caso seja %s, va_arg(list, char*), se for d, va_arg(list,
 3 - Para usar uma va_list dentro de um função que realmente "passa" para o argumento seguinte, temos
 de usar chamar ela como parametro pointer de um va_list -> void whatever(va_list *list) <- desse modo
 toda alteração feita dentro da func continua presente após o fim da mesma :D.
+
+4- IDEIA para usar no flags_set, criar uma função que retorne um int(1), ou uma str(2),
+ou um unsigned int (3), ou um unsigned long long int (4) e para receber esse retorno, 
+verifico o resultado, se for 1 - va_arg(list, int), se for 2 - va_arg(list, char*) ...

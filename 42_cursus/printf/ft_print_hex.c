@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 19:20:00 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/03/16 13:31:25 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/03/22 16:43:54 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,14 @@ char	*ft_invert(char *hexa)
 	return(temp);
 }
 
-void	ft_print_hex(char letter, unsigned long long int nmb)
+char	*ft_print_hex(char letter, ULLONG nmb)
 {
-	unsigned long long int 	temp;
-	char					*hexa;
-	int						index;
+	ULLONG	temp;
+	char	*hexa;
+	int		index;
 
 	if (nmb == 0)
-	{
-		ft_putchar(48);
-		return ;
-	}
+		return ("0");
 	hexa = (char*)malloc(sizeof(char) * 100);
 	index = 0;
 	while (nmb != 0)
@@ -61,6 +58,5 @@ void	ft_print_hex(char letter, unsigned long long int nmb)
 		ft_putstr("0x");
 	hexa[index] = 0;
 	hexa = ft_invert(hexa);
-	ft_putstr(hexa);
-	free(hexa);
+	return (hexa);
 }
