@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 11:31:08 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/03/23 01:00:33 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/03/25 12:20:02 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int		ft_is_in_set(char c, char *set);
 int 	ft_is_last(char *set, int choice);
 int 	ft_set_flag(char *set, int *index, va_list *list, char *buffer, 
 			int *i_main, int flag);
-int 	ft_set_digit(char *set, int *index, va_list *list, char *buffer, 
-			int *i_main);
+int 	ft_set_digit(int index2, char *nmbr_int, char *str, char *buffer, int *index,
+			int *i_main, char *set);
+int		ft_final_step(char *set, va_list *list, int *i_main, char *buffer);
 #endif

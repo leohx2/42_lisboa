@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 15:21:19 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/03/23 01:03:36 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/03/25 16:29:31 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int 	ft_is_last(char *set, int choice)
 	{
 		if(set[index] == '.')
 			return (3);// a opção 3 me dirá q a seguir ao nmro possui um "."
-		if(ft_is_in_set(set[index], "Z.-*"))
+		if(ft_is_in_set(set[index], "Z-*"))
 			return (0);
 	}
 	if (choice == 2)

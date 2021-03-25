@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 08:43:43 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/03/23 01:19:37 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/03/25 17:21:03 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int main ()
 {// arrumar o ft_is_last para saber quando devo adcionar a precision
 	int a = 0;
 
-	ft_printf("%03.d. .%04.3d\n", 1, 2);//verificar o pq esta dando segmentation Fault
-	printf("%-3d. .%04.3d\n", 1, 2);
+	ft_printf("STR%-5.3s.\n", "string");
+	printf("STR%-5.3s.\n", "string");
+	ft_printf("INT%-5.4d.\n", 42);
+	printf("INT%-5.4d.\n", 42);
 }
