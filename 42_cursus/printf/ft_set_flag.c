@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 21:42:25 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/03/30 16:41:18 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/03/30 18:05:33 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 //essa func tem como utilidade imprimir a flag 0; nmb = nmro para imprimir após as flags, tem de
 // ser levado em consideração devido ao "len" do nmb
-int	ft_set_zd(int index2, char *str, char *buffer, int *i_main, int f)//arrumar para quando o nmro for negativo ou for str.
+int	ft_set_zd(int index2, char *str, char *buffer, int *i_main, int f)//arrumar para quando o nmro for negativo ou for str..
 {
 	int		v_ret;
 	int		helper;
@@ -39,6 +39,7 @@ int	ft_set_zd(int index2, char *str, char *buffer, int *i_main, int f)//arrumar 
 	else
 		*i_main += 1;
 	free(str);
+	str = NULL;
 	return(v_ret);
 }
 
@@ -157,7 +158,7 @@ int ft_set_flag(char *set, int *index, va_list *list, char *buffer,
 	if (flag == '-')
 		return (ft_set_minus(index2, str, buffer, i_main, 0));
 	else if (flag == 'Z' || flag == 'd')
-		return (ft_set_zd(index2, str, buffer, i_main, flag));
+			return (ft_set_zd(index2, str, buffer, i_main, flag));
 	else if (flag == '.')
 		return (ft_set_dot(ft_atoi(nmbr_a), str, buffer, i_main, 0, 0));
 	else if (flag == 'D')

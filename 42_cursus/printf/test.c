@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 08:43:43 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/03/30 16:41:48 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/03/30 17:41:05 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,15 @@
 
 int main ()
 {// arrumar o ft_is_last para saber quando devo adcionar a precision
-	int len;
-
-	len = ft_printf("%-3.2s. %10.42d\n", "o", -10);
-	ft_printf("RESULTADO FT 1: %i\n", len);
-	len = printf("%-3.2s. %10.42d\n", "o", -10);
-	ft_printf("RESULTADO    1: %i\n", len);
-	/*
-	len = ft_printf("--0*%0*.0d*0 0*%0*.10d*0--\n", -2, 0, 21, 1);
-	ft_printf("RESULTADO FT 2: %i\n", len);
-    len = printf("--0*%0*.0d*0 0*%0*.10d*0--\n", -2, 0, 21, 1);
-	ft_printf("RESULTADO    2: %i\n", len);
-	len = ft_printf("%0.5d.\n", -10);
-	ft_printf("RESULTADO FT 3: %i\n", len);
-	len = printf("%0.5d.\n", -10);
-	ft_printf("RESULTADO    3: %i\n", len);
-	len = ft_printf(".%0*.*d.\n",12, 10, -101);
-	ft_printf("RESULTADO FT 4: %i\n", len);
-	len = printf(".%0*.*d.\n",12, 10, -101);
-	ft_printf("RESULTADO    4: %i\n", len);
-	*/
+	
+	ft_printf("%*c\n", 1, '0');
 	// arrumar os returns das paradas
 }
+//	TEST(8, print("%*c", 1, '0'));
+//	TEST(10, print("%*c", 2, '0'));
+//	TEST(11, print("%*c", -2, '0'));
+//	TEST(13, print("%*c", 10, '0'));
+//	TEST(14, print("%*c", -10, '0'));
+//	TEST(15, print("%*c%*c", -10, '0', 10, '1'));
+//	TEST(16, print("*%c%*c", '0', 10, '1'));
+//	TEST(17, print("%*c%c*", -10, '0', '1'));
