@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 15:21:19 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/03/25 16:29:31 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/03/30 16:25:46 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,13 @@ int 	ft_is_last(char *set, int choice)
 	index = 1;
 	while(ft_isdigit(set[index]))
 		index++;
+	if (choice == 1)
+	{
+		if(ft_is_in_set(set[index], "Z-*"))
+			return (0);
+		if(set[index - 1] == '0' && !ft_isdigit(set[index - 2]))
+			return (0);
+	}
 	if (choice == 3)
 	{
 		if(set[index] == '.')
@@ -72,4 +79,43 @@ char	*ft_return_type(char *buffer, int *i_main, va_list *list)
 			|| buffer[*i_main] == 'p')// HEXADECIMAL ou POINTER
 		return (ft_print_hex(buffer[*i_main], va_arg(*list, ULLONG)));
 	return (NULL);
+}
+
+int		ft_help_dot(char *str, char *buffer, int i_main, int *helper,
+	int *nmbr_int)
+{
+	if ((str[0] == 48 && !str[1]) && (buffer[i_main - 1] == 48 &&
+	!ft_isdigit(buffer[i_main - 2])))
+	{
+		str[0] = 32;
+		return (0);
+	}
+	if (str[0] == '-' && !ft_is_in_set(buffer[i_main], "sc"))
+	{
+		*helper += 1;
+		*nmbr_int += 2;
+		ft_putchar('-');
+		return (1);
+	}
+	return (0);
+}
+
+int		ft_rm_diff(int index2, char *nmbr_int1, char *str, char *buffer, int *index,
+	int *i_main, char *set, int *confirm)
+{
+	if (set[*index - ft_strlen(nmbr_int1) - 2] == '-')//from here
+		*confirm = 1;
+	if (!set[*index] && !ft_is_in_set(buffer[*i_main], "sc") && *confirm == 0)
+		return (ft_set_zd(index2, str, buffer, i_main, 'D'));
+	else if (ft_is_in_set(buffer[*i_main], "sc") && *confirm == 0)
+	{
+		*index = (int)ft_strlen(set);
+		return (ft_set_zd(index2, str, buffer, i_main, 'd'));
+	}
+	else if (ft_is_in_set(buffer[*i_main], "sc") && *confirm == 1)
+	{
+		*index = (int)ft_strlen(set);
+		return (ft_set_minus(index2, str, buffer, i_main, 0));
+	}
+	return (-1);
 }

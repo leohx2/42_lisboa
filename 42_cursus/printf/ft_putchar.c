@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/11 14:10:18 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/03/11 14:47:24 by lrosendo         ###   ########.fr       */
+/*   Created: 2021/03/11 14:09:27 by lrosendo          #+#    #+#             */
+/*   Updated: 2021/03/30 16:06:06 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include "ft_printf.h"
 
-void	ft_putstr(const char *s)
+int	ft_putchar(char c)
 {
-	if (!s)
-		return ;
-	while (*s)
-	{
-		write(1, s, 1);
-		s++;
-	}
+	write(1, &c, sizeof(char));
+	if (c != 0)
+		return (1);
+	else 
+		return (0);
 }

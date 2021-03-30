@@ -6,45 +6,48 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 11:33:07 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/03/25 12:59:16 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/03/30 16:08:16 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
 
-static void	ft_replacing(char *buffer, va_list list, int *i_main)//
+static int ft_replacing(char *buffer, va_list list, int *i_main)//
 {
 	char *aux;
+	int len;
 
+	len = 0;
 	while (buffer[*i_main])
 	{
 		if (buffer[*i_main] == '%')
 		{
-			ft_printf_flags(i_main, buffer, &list);
+			len += ft_printf_flags(i_main, buffer, &list);
 			aux = ft_return_type(buffer, i_main, &list);
 			if (aux)
 			{
-				ft_putstr(aux);
+				len += ft_putstr(aux);
 				free(aux);
 			}
 		}
 		else
-			ft_putchar(buffer[*i_main]);
+			len += ft_putchar(buffer[*i_main]);
 		if(buffer[*i_main] != '%' && buffer[*i_main] != '\0')	
 			*i_main += 1;
 	}
+	return (len);
 }
 
 int			ft_printf(const char *format, ...) //retornar o nmro de caracteres impresso em caso de sucesso e < 0 em caso de falhas.
 {
 	va_list	list;
-	char	*buffer;
 	int 	index;
+	int		len;
 
 	index = 0; // criei essa variavel só para desafogar umas linhas ali de cima 
 	va_start(list, format);
-	ft_replacing((char*)format, list, &index);
+	len = ft_replacing((char*)format, list, &index);
 	va_end(list);
-	return 0;//verificar se este return esta correto, colocado de forma provisoria para realizar os testes.
+	return (len);//verificar se este return esta correto, colocado de forma provisoria para realizar os testes.
 }

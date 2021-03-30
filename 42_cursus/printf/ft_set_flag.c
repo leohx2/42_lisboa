@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 21:42:25 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/03/25 17:24:23 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/03/30 16:41:18 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,82 +15,84 @@
 
 //essa func tem como utilidade imprimir a flag 0; nmb = nmro para imprimir após as flags, tem de
 // ser levado em consideração devido ao "len" do nmb
-static int	ft_set_zd(int index2, char *str, char *buffer, int *i_main, int f)//arrumar para quando o nmro for negativo ou for str.
+int	ft_set_zd(int index2, char *str, char *buffer, int *i_main, int f)//arrumar para quando o nmro for negativo ou for str.
 {
-	int		value_return;
-	value_return = 0;
-	if (index2 > 0)
-		value_return = index2;
+	int		v_ret;
+	int		helper;
+
+	helper = 0;
+	v_ret = 0;//value_return
+	if (*str == '-' && f == 'Z' && ++helper)
+		v_ret += ft_putchar('-');
 	while (index2 > 0)
 	{
 		if (f == 'Z')
-			ft_putchar(48);
+			v_ret += ft_putchar(48);
 		else
-			ft_putchar(32);
+			v_ret += ft_putchar(32);
 		index2--;
 	}
-	ft_putstr(str);
+	v_ret += ft_putstr(str + helper);
 	*i_main += 1;
 	if (buffer[*i_main] != '%')
-		ft_putchar(buffer[*i_main]);
+		v_ret += ft_putchar(buffer[*i_main]);
 	else
 		*i_main += 1;
 	free(str);
-	return(value_return);
+	return(v_ret);
 }
 
-static int	ft_set_minus(int index2, char *str, char *buffer, int *i_main, int D)//achar alguma fucking maneira de saber o argumento q vou receber, para poder imprimir corretamente
+int	ft_set_minus(int index2, char *str, char *buffer, int *i_main, int D)//achar alguma fucking maneira de saber o argumento q vou receber, para poder imprimir corretamente
 {
-	int		value_return;
+	int		v_ret;
 
-	value_return = 0;
-	if (index2 > 0)
-		value_return = index2;
+	v_ret = 0;//value_return
 	if (D > 0)
 	{
 		D = D - ft_strlen(str);
 		while (D-- > 0)
-			ft_putchar(48);
+			v_ret += ft_putchar(48);
 	}
-	ft_putstr(str);
+	v_ret +=  ft_putstr(str);
 	while (index2-- > 0)
-		ft_putchar(32);
+		v_ret += ft_putchar(32);
 	*i_main += 1;
 	if (buffer[*i_main] != '%')
-		ft_putchar(buffer[*i_main]);
+		v_ret += ft_putchar(buffer[*i_main]);
 	else
 		*i_main += 1;
 	free(str);
-	return(value_return);
+	return(v_ret);
 }
 
-static int ft_set_dot(int nmbr_int, char *str, char *buffer, int *i_main)
+static int ft_set_dot(int nmbr_int, char *str, char *buffer, int *i_main,
+	int index2, int helper)
 {
-	int		value_return;
+	int		aux;
+	int		v_ret;
 
-	value_return = 0;
+	aux = ft_help_dot(str, buffer, *i_main, &helper, &nmbr_int);
+	v_ret = aux;
 	if (buffer[*i_main] == 's' || buffer[*i_main] == 'c')
-		while(value_return < nmbr_int && str[value_return])
-			ft_putchar(str[value_return++]);
+		while(aux < nmbr_int && str[aux])
+			v_ret += ft_putchar(str[aux++]);
 	else
 	{
 		if (buffer[*i_main] == 'p')
-			ft_putstr("0x");
-		while (value_return < (nmbr_int - (int)ft_strlen(str)))
-		{
-			ft_putchar(48);
-			value_return++;
-		}
-		ft_putstr(str);
-		value_return += ft_strlen(str);
+			v_ret +=ft_putstr("0x");
+		while (aux++ < (nmbr_int - (int)ft_strlen(str)))
+			v_ret += ft_putchar(48);
+		v_ret += ft_putstr(str + helper);
 	}
 	*i_main += 1;
+	while (index2-- > 0)
+		v_ret += ft_putchar(32);
 	if (buffer[*i_main] != '%')
-		ft_putchar(buffer[*i_main]);
+		v_ret += ft_putchar(buffer[*i_main]);
 	else
 		*i_main += 1;
 	free(str);
-	return (value_return);
+	return (v_ret);
 }
 
 /*
@@ -108,20 +110,29 @@ int ft_set_digit(int index2, char *nmbr_int1, char *str, char *buffer, int *inde
 	int *i_main, char *set)
 {
 	char	nmbr_int2[20];
+	int		confirm;
+	int		len;
 
+	confirm = 0;
 	*index += 1;
-	if (!set[*index] && !ft_is_in_set(buffer[*i_main], "sc"))
-		return (ft_set_zd(index2, str, buffer, i_main, 'D'));
+	len = ft_rm_diff(index2, nmbr_int1, str, buffer, index, i_main, set,
+			 &confirm);
+	if (len > -1)
+		return (len);
+	len = 0;// voltando a 0, -1 siginifica que o rm_diff não redirecionou pra outro lado.
 	index2 = 0;
 	while (ft_isdigit(set[*index]))
 		nmbr_int2[index2++] = set[(*index)++];
 	index2 = ft_atoi(nmbr_int1) - ft_atoi(nmbr_int2);
-	while (index2 > 0)
-	{
-		ft_putchar(32); // usar uma flag no dot, para fazer isso em caso de menos
+	if (ft_atoi(nmbr_int2) == 0)
+		index2 = ft_atoi(nmbr_int1) - (int)ft_strlen(str);
+	if (confirm == 1)
+		return (ft_set_dot(ft_atoi(nmbr_int2), str, buffer, i_main, index2, 0));
+	if (str[0] == '-')
 		index2--;
-	}
-	return (ft_set_dot(ft_atoi(nmbr_int2), str, buffer, i_main));
+	while (index2-- > 0)
+		len += ft_putchar(32);
+	return (ft_set_dot(ft_atoi(nmbr_int2), str, buffer, i_main, 0, 0) + len);
 }		
 
 int ft_set_flag(char *set, int *index, va_list *list, char *buffer, 
@@ -134,6 +145,9 @@ int ft_set_flag(char *set, int *index, va_list *list, char *buffer,
 	index2 = 0;
 	if (flag != 'D' && flag != 'd')//caso a Flag seja D, significa que é apenas DIGITO, sem flags a frente
 		*index += 1;
+	if (flag == 'D' || flag == 'd')
+		while (!ft_isdigit(set[*index]))
+			*index += 1;
 	while (ft_isdigit(set[*index]))
 		nmbr_a[index2++] = set[(*index)++];
 	if (ft_is_in_set(set[*index], "Z-*"))
@@ -145,8 +159,9 @@ int ft_set_flag(char *set, int *index, va_list *list, char *buffer,
 	else if (flag == 'Z' || flag == 'd')
 		return (ft_set_zd(index2, str, buffer, i_main, flag));
 	else if (flag == '.')
-		return (ft_set_dot(ft_atoi(nmbr_a), str, buffer, i_main));
+		return (ft_set_dot(ft_atoi(nmbr_a), str, buffer, i_main, 0, 0));
 	else if (flag == 'D')
 		return (ft_set_digit(index2, nmbr_a, str, buffer, index, i_main, set));
 	return (0);
 }
+

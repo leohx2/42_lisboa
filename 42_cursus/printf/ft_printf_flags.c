@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 21:13:56 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/03/25 17:03:18 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/03/30 15:41:41 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,25 +23,23 @@ int	ft_final_step(char *set, va_list *list, int *i_main, char *buffer)
 	int	index;
 	int	len;
 
+	len = 0;
 	index = 0;
 	while (set[index])
 	{
-		//printf("opa1 SET --> %c\n", set[index]);
 		if (set[index] == 'Z' && !ft_strchr(set, '-') && 
 			ft_is_last(set + index, 3) == 1)
 			len += ft_set_flag(set, &index, list, buffer, i_main, 'Z');
-		else if (set[index] == 'Z' && ft_strchr(set, '-'))
-			index++;
 		else if (set[index] == '-' && (ft_is_last(set + index, 3) == 1) && index < 2)
 			len += ft_set_flag(set, &index, list, buffer, i_main, '-');
-		else if (set[index] == '-' && (ft_is_last(set + index, 3) != 1))
-			index++;
 		else if (set[index] == '.')
 			len += ft_set_flag(set, &index, list, buffer, i_main, '.');
 		else if (ft_is_last(set + index, 3) == 1)
 			len += ft_set_flag(set, &index, list, buffer, i_main, 'd');
 		else if (ft_is_last(set + index, 3) == 3)
 			len += ft_set_flag(set, &index, list, buffer, i_main, 'D');
+		else
+			index++;
 	}
 	free(set);
 	return (len);
@@ -49,6 +47,8 @@ int	ft_final_step(char *set, va_list *list, int *i_main, char *buffer)
 
 static void	ft_move(char *set, int *index2, int list_arg)
 {
+	if (list_arg == 0)
+		return ;
 	ft_memmove(set + *index2, ft_itoa(list_arg), ft_strlen(ft_itoa(list_arg)));
 	*index2 += ft_strlen(ft_itoa(list_arg)) - 1;
 }
@@ -67,10 +67,11 @@ static int	ft_set(char *buffer, char *set, int index, va_list *list,
 			&& *index2 <= 1)
 		set[*index2] = buffer[index];
 	else if (buffer[index] == '0' && (ft_isdigit(set[*index2 - 1]) || 
-			set[*index2 - 1] == '.') && ft_is_last(buffer + index, 2))
+			set[*index2 - 1] == '.') && ft_is_last(buffer + index, 1) == 1)
 			set[*index2] = '0';
 	else if (buffer[index] == '0' && !ft_isdigit(buffer[index - 1])
-			&& !ft_strchr(set, '-') && !ft_strchr(set, 'Z') && !ft_is_last(buffer + index, 2))
+			&& !ft_strchr(set, '-') && !ft_strchr(set, 'Z') && 
+			ft_is_last(buffer + index, 3) == 1)
 		set[*index2] = 'Z';
 	else if (buffer[index] == '.' && !ft_strchr(set, '.')
 			&& ((ft_isdigit(buffer[index + 1]) || buffer[index + 1] == '*')
@@ -101,7 +102,5 @@ int			ft_printf_flags(int *index, char *buffer, va_list *list)
 			index2++;
 		*index += 1;
 	}
-	//printf("\nFLAGS --> %s\n", set);
 	return(ft_final_step(set, list, index, buffer));
-}//	O valor do return deverá ser o nmro de caracteres impressos na tela exclusivamente por conta
-//desta func.
+}

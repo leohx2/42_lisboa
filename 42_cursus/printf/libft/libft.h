@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 14:00:29 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/03/11 14:47:13 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/03/27 12:30:11 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,4 @@ void			ft_lstclear(t_list **lst, void (*del)(void*));
 void			ft_lstiter(t_list *lst, void (*f)(void *));
 t_list			*ft_lstmap(t_list *lst, void *(*f)(void *),
 void (*del)(void *));
-void			ft_putstr(const char *s);
-void			ft_putchar(char c);
 #endif

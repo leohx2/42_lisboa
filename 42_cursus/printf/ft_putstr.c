@@ -1,18 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/11 14:09:27 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/03/11 14:47:06 by lrosendo         ###   ########.fr       */
+/*   Created: 2021/03/11 14:10:18 by lrosendo          #+#    #+#             */
+/*   Updated: 2021/03/27 12:34:08 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	ft_putchar(char c)
+int	ft_putstr(const char *s)
 {
-	write(1, &c, sizeof(char));
+	int	len;
+
+	len = 0;
+	while (s[len])
+	{
+		write(1, &s[len], 1);
+		len++;
+	}
+	return (len);
 }
