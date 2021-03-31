@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 21:42:25 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/03/30 18:05:33 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/03/31 21:27:47 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,16 @@ int	ft_set_zd(int index2, char *str, char *buffer, int *i_main, int f)//arrumar 
 			v_ret += ft_putchar(32);
 		index2--;
 	}
+	if (buffer[*i_main] == 'c' && str && !str[0])
+		v_ret += ft_putchar(-1);
 	v_ret += ft_putstr(str + helper);
 	*i_main += 1;
 	if (buffer[*i_main] != '%')
 		v_ret += ft_putchar(buffer[*i_main]);
 	else
 		*i_main += 1;
-	free(str);
-	str = NULL;
+	if (str)
+		free(str);
 	return(v_ret);
 }
 
@@ -55,14 +57,15 @@ int	ft_set_minus(int index2, char *str, char *buffer, int *i_main, int D)//achar
 			v_ret += ft_putchar(48);
 	}
 	v_ret +=  ft_putstr(str);
+	if (buffer[*i_main] == 'c' && str && !str[0])
+		v_ret += ft_putchar(-1);
 	while (index2-- > 0)
 		v_ret += ft_putchar(32);
 	*i_main += 1;
 	if (buffer[*i_main] != '%')
 		v_ret += ft_putchar(buffer[*i_main]);
-	else
-		*i_main += 1;
-	free(str);
+	if (str)
+		free(str);
 	return(v_ret);
 }
 
@@ -74,13 +77,13 @@ static int ft_set_dot(int nmbr_int, char *str, char *buffer, int *i_main,
 
 	aux = ft_help_dot(str, buffer, *i_main, &helper, &nmbr_int);
 	v_ret = aux;
-	if (buffer[*i_main] == 's' || buffer[*i_main] == 'c')
-		while(aux < nmbr_int && str[aux])
+	if (buffer[*i_main] == 'c' && str && !str[0])
+			v_ret += ft_putchar(-1);// verificando quando temos q imprimir um 0/;
+	if (buffer[*i_main] == 's' || buffer[*i_main] == 'c' )
+		while(aux < nmbr_int && str && str[aux])
 			v_ret += ft_putchar(str[aux++]);
 	else
 	{
-		if (buffer[*i_main] == 'p')
-			v_ret +=ft_putstr("0x");
 		while (aux++ < (nmbr_int - (int)ft_strlen(str)))
 			v_ret += ft_putchar(48);
 		v_ret += ft_putstr(str + helper);
@@ -92,7 +95,8 @@ static int ft_set_dot(int nmbr_int, char *str, char *buffer, int *i_main,
 		v_ret += ft_putchar(buffer[*i_main]);
 	else
 		*i_main += 1;
-	free(str);
+	if (str)
+		free(str);
 	return (v_ret);
 }
 
@@ -111,26 +115,30 @@ int ft_set_digit(int index2, char *nmbr_int1, char *str, char *buffer, int *inde
 	int *i_main, char *set)
 {
 	char	nmbr_int2[20];
-	int		confirm;
+	int		neg;
 	int		len;
 
-	confirm = 0;
+	neg = 0;
 	*index += 1;
-	len = ft_rm_diff(index2, nmbr_int1, str, buffer, index, i_main, set,
-			 &confirm);
+	len = ft_rm_diff(index2, nmbr_int1, str, buffer, index, i_main, set, &neg);
 	if (len > -1)
 		return (len);
 	len = 0;// voltando a 0, -1 siginifica que o rm_diff não redirecionou pra outro lado.
 	index2 = 0;
 	while (ft_isdigit(set[*index]))
 		nmbr_int2[index2++] = set[(*index)++];
-	index2 = ft_atoi(nmbr_int1) - ft_atoi(nmbr_int2);
-	if (ft_atoi(nmbr_int2) == 0)
+	if (buffer[*i_main] == 's' && (int)ft_strlen(str) < ft_atoi(nmbr_int2))//from here
+		index2 = ft_atoi(nmbr_int1) - ft_strlen(str); 
+	else if (ft_atoi(nmbr_int2) == 0)
 		index2 = ft_atoi(nmbr_int1) - (int)ft_strlen(str);
-	if (confirm == 1)
-		return (ft_set_dot(ft_atoi(nmbr_int2), str, buffer, i_main, index2, 0));
+	else if ((int)ft_strlen(str) > ft_atoi(nmbr_int2) && !ft_is_in_set(buffer[*i_main], "sc"))//verificar em caso de %c ou %d
+		index2 = ft_atoi(nmbr_int1) - ft_strlen(str);
+	else
+		index2 = ft_atoi(nmbr_int1) - ft_atoi(nmbr_int2); //to here
 	if (str[0] == '-')
 		index2--;
+	if (neg == 1)
+		return (ft_set_dot(ft_atoi(nmbr_int2), str, buffer, i_main, index2, 0));
 	while (index2-- > 0)
 		len += ft_putchar(32);
 	return (ft_set_dot(ft_atoi(nmbr_int2), str, buffer, i_main, 0, 0) + len);
@@ -155,6 +163,8 @@ int ft_set_flag(char *set, int *index, va_list *list, char *buffer,
 		return(0);
 	str = ft_return_type(buffer, i_main, list);
 	index2 = ft_atoi(nmbr_a) - (int)ft_strlen(str);
+	if (buffer[*i_main] == 'c' && str && !str[0])
+		index2--;
 	if (flag == '-')
 		return (ft_set_minus(index2, str, buffer, i_main, 0));
 	else if (flag == 'Z' || flag == 'd')

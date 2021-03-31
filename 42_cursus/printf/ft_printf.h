@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 11:31:08 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/03/30 16:28:34 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/03/31 16:00:59 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,5 @@ int		ft_rm_diff(int index2, char *nmbr_int1, char *str, char *buffer,
 		int *index, int *i_main, char *set, int *confirm);
 int		ft_set_minus(int index2, char *str, char *buffer, int *i_main, int D);
 int		ft_set_zd(int index2, char *str, char *buffer, int *i_main, int f);
+int		ft_replacing(char *buffer, va_list list, int *i_main);
 #endif

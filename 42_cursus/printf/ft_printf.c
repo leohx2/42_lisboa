@@ -6,14 +6,14 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 11:33:07 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/03/30 18:04:49 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/03/31 19:31:44 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
 
-static int ft_replacing(char *buffer, va_list list, int *i_main)//
+int ft_replacing(char *buffer, va_list list, int *i_main)//
 {
 	char *aux;
 	int len;
@@ -25,6 +25,9 @@ static int ft_replacing(char *buffer, va_list list, int *i_main)//
 		{
 			len += ft_printf_flags(i_main, buffer, &list);
 			aux = ft_return_type(buffer, i_main, &list);
+			
+			if (buffer[*i_main] == 'c' && aux && !aux[0])
+				len += ft_putchar(-1);
 			if (aux)
 			{
 				len += ft_putstr(aux);

@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 21:13:56 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/03/30 18:42:33 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/03/31 21:17:20 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,10 @@ int	ft_final_step(char *set, va_list *list, int *i_main, char *buffer)
 		else
 			index++;
 	}
-	free(set);
-	set = NULL;
+	if (set)
+		free(set);
+	if (buffer[*i_main] == '%')
+		return (len + ft_replacing(buffer, *list, i_main));
 	return (len);
 }
 
@@ -54,8 +56,9 @@ static void	ft_move(char *set, int *index2, int list_arg)
 		return ;
 	test1 = ft_itoa(list_arg);
 	ft_memmove(set + *index2, test1, ft_strlen(test1));
-	free(test1);
 	*index2 += ft_strlen(test1) - 1;
+	if (test1)
+		free(test1);
 }
 
 /*
@@ -77,13 +80,13 @@ static int	ft_set(char *buffer, char *set, int index, va_list *list,
 			set[*index2] = '0';
 
 	else if (buffer[index] == '0' && !ft_isdigit(buffer[index - 1])
-			&& !ft_strchr(set, '-') && !ft_strchr(set, 'Z') && 
-			ft_is_last(buffer + index, 3) == 1)
+			&& !ft_strchr(set, '-') && !ft_strchr(set, 'Z') &&
+			ft_is_last(buffer + index, 4) == 1 && buffer[index - 1] != '.')
 		set[*index2] = 'Z';
 
 	else if (buffer[index] == '.' && !ft_strchr(set, '.')
 			&& ((ft_isdigit(buffer[index + 1]) || buffer[index + 1] == '*')
-			|| ft_isdigit(set[*index2 - 1])))
+			|| ft_isdigit(set[*index2 - 1]) || ft_is_last(buffer + index, 2)))
 		set[*index2] = '.';
 
 	else if (buffer[index] == '*' && ft_is_last(buffer + index, 2) &&
@@ -113,5 +116,6 @@ int			ft_printf_flags(int *i_main, char *buffer, va_list *list)
 			index2++;
 		*i_main += 1;
 	}
+	//printf("SET --> %s\n", set);
 	return(ft_final_step(set, list, i_main, buffer));
 }

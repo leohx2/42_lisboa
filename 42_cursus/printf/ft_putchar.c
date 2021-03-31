@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 14:09:27 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/03/30 16:06:06 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/03/31 17:19:04 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,12 @@
 
 int	ft_putchar(char c)
 {
+	if (c == -1)
+	{
+		c = 0;
+		write(1, &c, sizeof(char));
+		return (1);
+	}
 	write(1, &c, sizeof(char));
 	if (c != 0)
 		return (1);

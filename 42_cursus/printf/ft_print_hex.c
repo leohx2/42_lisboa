@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 19:20:00 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/03/22 16:43:54 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/03/31 20:21:46 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ char	*ft_invert(char *hexa)
 	int		index2;
 	char	*temp;
 
-	if (!hexa)
-		return (NULL);
 	temp = (char*)ft_calloc(sizeof(char), ft_strlen(hexa) + 1);
 	index = ft_strlen(hexa);
 	index2 = 0;
@@ -38,9 +36,11 @@ char	*ft_print_hex(char letter, ULLONG nmb)
 	char	*hexa;
 	int		index;
 
-	if (nmb == 0)
-		return ("0");
-	hexa = (char*)malloc(sizeof(char) * 100);
+	if (nmb == 0 && letter == 'p')
+		return (ft_strdup("0x0"));
+	else if (nmb == 0)
+		return (ft_strdup("0"));
+	hexa = (char*)ft_calloc(sizeof(char), 100);
 	index = 0;
 	while (nmb != 0)
 	{
@@ -54,9 +54,7 @@ char	*ft_print_hex(char letter, ULLONG nmb)
 		hexa[index++] = temp;
 		nmb = nmb / 16;
 	}
-	if (letter == 'p')
-		ft_putstr("0x");
-	hexa[index] = 0;
-	hexa = ft_invert(hexa);
-	return (hexa);
+	if (letter == 'p' && (hexa[index++] = 'x'))
+		hexa[index++] = '0';
+	return (ft_invert(hexa));
 }
