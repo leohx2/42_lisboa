@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 16:43:23 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/04/01 18:27:23 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/04/01 22:08:21 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@ int	ft_is_null(char *set, char *str)//função para verificar se o caracter deve
 	index = (int)ft_strlen(set) - 1;
 	if (set[index] == '0' && set[index - 1] == '.' && (str[0] == 32 && !str[1])
 	&& (!ft_isdigit(set[index - 2]) || !set[index - 2]))
+		return (1);
+	if (set[index] == '.'&& (str[0] == '0' && !str[1])
+	&& (!ft_isdigit(set[index - 1]) || !set[index - 1]))
 		return (1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 21:42:25 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/04/01 20:44:22 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/04/01 23:12:49 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,19 @@ int	ft_set_zd(char *set, int index2, char *str, char *buffer, int *i_main,
 	v_ret = 0;//value_return
 	if (*str == '-' && f == 'Z' && ++helper)
 		v_ret += ft_putchar('-');
-	while (index2 > 0)
+	while (index2-- > 0)
 	{
 		if (f == 'Z')
 			v_ret += ft_putchar(48);
 		else
 			v_ret += ft_putchar(32);
-		index2--;
 	}
 	if (buffer[*i_main] == 'c' && str && !str[0])
 		v_ret += ft_putchar(-1);
 	if (ft_dontprint(set, str, buffer, *i_main))
 		v_ret += ft_putstr(str + helper);
 	*i_main += 1;
-	if (buffer[*i_main] != '%')
+	if (buffer[*i_main] != '%' && buffer[*i_main])//
 		v_ret += ft_putchar(buffer[*i_main]);
 	if (str)
 		free(str);
@@ -62,7 +61,7 @@ int	ft_set_minus(int index2, char *str, char *buffer, int *i_main, int D)//achar
 	while (index2-- > 0)
 		v_ret += ft_putchar(32);
 	*i_main += 1;
-	if (buffer[*i_main] != '%')
+	if (buffer[*i_main] != '%' && buffer[*i_main])
 		v_ret += ft_putchar(buffer[*i_main]);
 	if (str)
 		free(str);
@@ -86,13 +85,13 @@ static int ft_set_dot(int nmbr_int, char *str, char *buffer, int *i_main,
 	{
 		while (aux++ < (nmbr_int - (int)ft_strlen(str)))
 			v_ret += ft_putchar(48);
-		if (!ft_is_null(set, str))
+		if (!ft_is_null(set, str) && ft_dontprint(set, str, buffer, *i_main))
 			v_ret += ft_putstr(str + helper);
 	}
 	*i_main += 1;
 	while (index2-- > 0)
 		v_ret += ft_putchar(32);
-	if (buffer[*i_main] != '%')
+	if (buffer[*i_main] != '%' && buffer[*i_main])
 		v_ret += ft_putchar(buffer[*i_main]);
 	free(str);
 	return (v_ret);

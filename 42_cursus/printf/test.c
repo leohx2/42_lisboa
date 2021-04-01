@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 08:43:43 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/04/01 21:05:06 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/04/01 23:13:31 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 #define LONG_MIN  (-__LONG_MAX__ -1L)
 int main ()
 {
-	int len;
 	int		a = -4;
 	int		b = 0;
 	char	c = 'a';
@@ -46,16 +45,18 @@ int main ()
 	char	*s = "-2147483648";
 	char	*t = "0x12345678";
 	char	*u = "-0";
-
-	len = ft_printf("%1i, %1d, %1d, %1d, %1d, %1d, %1d, %1d", i, j, k, l, m, c, e, d);
+	int len;
+	
+	len = ft_printf("%%%%");
 	printf("\nRESULTADO FT:  %i", len);
 	printf("\n---------------------------\n");
-	len = printf("%1i, %1d, %1d, %1d, %1d, %1d, %1d, %1d", i, j, k, l, m, c, e, d);
+	len = printf("%%%%");
+	//printf("\n%%%%");
 	printf("\nRESULTADO FT:  %i", len);
 	printf("\n---------------------------\n");
 	//printf("\n---------------------------\n");
 }
 /*
-	TEST(16, print("%.4s%.s", "12345", "12345"));
-	TEST(17, print("%10.4s%.5s", "12345", "12345"));	
+int s_space_padded_field_width(void){return test("%32s", "abc");}
+int s_space_padded_field_width2(void){return test("%16s", "nark nark");}
 */

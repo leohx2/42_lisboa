@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 15:21:19 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/04/01 19:40:27 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/04/01 23:12:55 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,10 @@ int 		ft_is_last(char *set, int choice)
 static char	*ft_percent(char *buffer, int *i_main)
 {
 	char	*percent;
-
 	percent = ft_calloc(3, sizeof(char));
 	percent[0] = '%';
-	*i_main += 2;
+	if (buffer[*i_main] == '%' && buffer[*i_main + 1] && buffer[*i_main + 1] == '%')
+		*i_main += 2;
 	if (buffer[*i_main] != '%')
 		percent[1] = buffer[*i_main];
 	return (percent);
