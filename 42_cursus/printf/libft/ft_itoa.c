@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 14:10:41 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/03/31 20:49:55 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/04/01 11:29:33 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char			*ft_itoa(int n)
 	int		nmbr_size;
 
 	aux = 0;
-	if (!(str_aux = (char*)ft_calloc(12, sizeof(char))))
+	if (!(str_aux = (char*)malloc(12 * sizeof(char))))
 		return (0);
 	if (n == -2147483648)
 	{
@@ -59,10 +59,12 @@ char			*ft_itoa(int n)
 	}
 	if (n < 0)
 	{
-		to_return[aux++] = '-';
+		str_aux[aux++] = '-';
 		n *= -1;
 	}
 	nmbr_size = ft_value(n);
 	ft_make_str(nmbr_size, n, str_aux, aux);
+	to_return = ft_strdup(str_aux);
+	free(str_aux);
 	return (to_return);
 }

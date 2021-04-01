@@ -3,6 +3,7 @@
 		"sstream": "c",
 		"chrono": "c",
 		"stdio.h": "c",
-		"libft.h": "c"
+		"libft.h": "c",
+		"bitset": "c"
 	}
 }

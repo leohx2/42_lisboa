@@ -6,7 +6,7 @@
 #    By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/16 16:41:07 by lrosendo          #+#    #+#              #
-#    Updated: 2021/03/27 11:11:29 by lrosendo         ###   ########.fr        #
+#    Updated: 2021/04/01 20:55:48 by lrosendo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,8 @@ all: ${NAME}
 
 ${NAME}: ${OBJ}
 	ar -rs ${NAME} ${OBJ}
+
+printf : ${OBJ}
 
 %.o: %.c 
 	gcc ${FLAGS} -c -o $@ $<

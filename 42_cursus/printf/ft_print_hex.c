@@ -6,12 +6,13 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 19:20:00 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/03/31 20:21:46 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/04/01 19:02:04 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
+#define LONG_MIN  (-__LONG_MAX__ -1L)
 char	*ft_invert(char *hexa)
 {
 	int		index;
@@ -30,14 +31,16 @@ char	*ft_invert(char *hexa)
 	return(temp);
 }
 
-char	*ft_print_hex(char letter, ULLONG nmb)
+char	*ft_print_hex(char letter, long nmb)
 {
-	ULLONG	temp;
+	long	temp;
 	char	*hexa;
 	int		index;
 
-	if (nmb == 0 && letter == 'p')
-		return (ft_strdup("0x0"));
+	if (nmb > 4294967295)
+		nmb = 4294967295;
+	if (nmb == LONG_MIN)
+		nmb = 0;
 	else if (nmb == 0)
 		return (ft_strdup("0"));
 	hexa = (char*)ft_calloc(sizeof(char), 100);
@@ -54,7 +57,33 @@ char	*ft_print_hex(char letter, ULLONG nmb)
 		hexa[index++] = temp;
 		nmb = nmb / 16;
 	}
-	if (letter == 'p' && (hexa[index++] = 'x'))
-		hexa[index++] = '0';
+	return (ft_invert(hexa));
+}
+
+char	*ft_print_memory(ULLONG nmb)
+{
+	ULLONG	temp;
+	char	*hexa;
+	int		index;
+
+
+	if (nmb == 0)
+		return (ft_strdup("0x0"));
+	else if (nmb == 0)
+		return (ft_strdup("0"));
+	hexa = (char*)ft_calloc(sizeof(char), 100);
+	index = 0;
+	while (nmb != 0)
+	{
+		temp = nmb%16;
+		if (temp < 10)
+			temp = temp + 48;
+		else
+			temp = temp + 87;
+		hexa[index++] = temp;
+		nmb = nmb / 16;
+	}
+	hexa[index++] = 'x';
+	hexa[index++] = '0';
 	return (ft_invert(hexa));
 }

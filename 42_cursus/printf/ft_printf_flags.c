@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 21:13:56 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/03/31 21:17:20 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/04/01 20:35:38 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	ft_final_step(char *set, va_list *list, int *i_main, char *buffer)
 			len += ft_set_flag(set, &index, list, buffer, i_main, '.');
 		else if (ft_is_last(set + index, 3) == 1)
 			len += ft_set_flag(set, &index, list, buffer, i_main, 'd');
-		else if (ft_is_last(set + index, 3) == 3)
+		else if (ft_is_last(set + index, 3) == 3 && !ft_is_in_set(set[index], "z*.-"))
 			len += ft_set_flag(set, &index, list, buffer, i_main, 'D');
 		else
 			index++;
@@ -74,29 +74,23 @@ static int	ft_set(char *buffer, char *set, int index, va_list *list,
 	if (buffer[index] == '-' && !ft_strchr(set, '-') 
 			&& *index2 <= 1)
 		set[*index2] = buffer[index];
-
 	else if (buffer[index] == '0' && (ft_isdigit(set[*index2 - 1]) || 
 			set[*index2 - 1] == '.') && ft_is_last(buffer + index, 1) == 1)
 			set[*index2] = '0';
-
 	else if (buffer[index] == '0' && !ft_isdigit(buffer[index - 1])
 			&& !ft_strchr(set, '-') && !ft_strchr(set, 'Z') &&
 			ft_is_last(buffer + index, 4) == 1 && buffer[index - 1] != '.')
 		set[*index2] = 'Z';
-
 	else if (buffer[index] == '.' && !ft_strchr(set, '.')
 			&& ((ft_isdigit(buffer[index + 1]) || buffer[index + 1] == '*')
 			|| ft_isdigit(set[*index2 - 1]) || ft_is_last(buffer + index, 2)))
 		set[*index2] = '.';
-
 	else if (buffer[index] == '*' && ft_is_last(buffer + index, 2) &&
 		!ft_isdigit(buffer[index + 1]))
 		ft_move(set, index2, va_arg(*list, int));
-
 	else if (ft_isdigit(buffer[index]) && buffer[index] != '0' 
 			&& ft_is_last(buffer + index, 2))
 		set[*index2] = buffer[index];
-		
 	else
 		return (0);
 	return (1);
