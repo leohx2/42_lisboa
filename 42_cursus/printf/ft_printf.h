@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 11:31:08 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/04/01 19:00:11 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/04/05 18:53:59 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,16 @@
 # ifndef ULLONG
 #	define ULLONG unsigned long int
 # endif
+# ifndef TEST
+#	define TEST unsigned int
+# endif
 # include "libft/libft.h"
 # include <stdarg.h>
 
 char	*ft_return_type(char *buffer, int *i_main, va_list *list);
 int		ft_printf(const char *format, ...);
 char	*ft_unsigned_itoa(unsigned int n);
-char	*ft_print_hex(char letter, long nmb);
+char	*ft_print_hex(char letter, TEST nmb);
 char	*ft_print_memory(ULLONG nmb);
 int		ft_printf_flags(int *index, char *buffer, va_list *list);
 int		ft_is_in_set(char c, char *set);
@@ -42,4 +45,6 @@ int		ft_set_zd(char *set, int index2, char *str, char *buffer, int *i_main, int 
 int		ft_replacing(char *buffer, va_list list, int *i_main);
 int		ft_is_null(char *set, char *str);
 int 	ft_dontprint(char *set, char *str, char *buffer, int i_main);
+int		ft_index2(char *buffer, int i_main, char *str, char *n1, char *n2);
+void	ft_index1(char *set, int *index, int flag, char *nmbr_a);
 #endif

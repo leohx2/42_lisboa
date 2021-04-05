@@ -6,21 +6,18 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 11:33:07 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/04/01 22:41:40 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/04/05 18:59:28 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
-int ft_replacing(char *buffer, va_list list, int *i_main)//
+int ft_replacing(char *buffer, va_list list, int *i_main)
 {
-
 	char *aux;
 	int len;
 
 	len = 0;
-
 	while (buffer[*i_main])
 	{
 		if (buffer[*i_main] == '%')
@@ -38,21 +35,21 @@ int ft_replacing(char *buffer, va_list list, int *i_main)//
 		}
 		else
 			len += ft_putchar(buffer[*i_main]);
-		if(buffer[*i_main] != '%' && buffer[*i_main] != '\0')	
+		if (buffer[*i_main] != '%' && buffer[*i_main] != '\0')
 			*i_main += 1;
 	}
 	return (len);
 }
 
-int			ft_printf(const char *format, ...) //retornar o nmro de caracteres impresso em caso de sucesso e < 0 em caso de falhas.
+int	ft_printf(const char *format, ...)
 {
 	va_list	list;
 	int 	index;
 	int		len;
 
-	index = 0; // criei essa variavel só para desafogar umas linhas ali de cima 
+	index = 0;
 	va_start(list, format);
 	len = ft_replacing((char*)format, list, &index);
 	va_end(list);
-	return (len);//verificar se este return esta correto, colocado de forma provisoria para realizar os testes.
+	return (len);
 }

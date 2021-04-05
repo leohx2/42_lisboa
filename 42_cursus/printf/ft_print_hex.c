@@ -6,13 +6,12 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 19:20:00 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/04/01 19:02:04 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/04/05 18:59:14 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
-#define LONG_MIN  (-__LONG_MAX__ -1L)
+
 char	*ft_invert(char *hexa)
 {
 	int		index;
@@ -31,7 +30,7 @@ char	*ft_invert(char *hexa)
 	return(temp);
 }
 
-char	*ft_print_hex(char letter, long nmb)
+char	*ft_print_hex(char letter, TEST nmb)
 {
 	long	temp;
 	char	*hexa;
@@ -39,8 +38,6 @@ char	*ft_print_hex(char letter, long nmb)
 
 	if (nmb > 4294967295)
 		nmb = 4294967295;
-	if (nmb == LONG_MIN)
-		nmb = 0;
 	else if (nmb == 0)
 		return (ft_strdup("0"));
 	hexa = (char*)ft_calloc(sizeof(char), 100);

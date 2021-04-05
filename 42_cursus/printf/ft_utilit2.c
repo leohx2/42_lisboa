@@ -6,14 +6,13 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 16:43:23 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/04/01 22:08:21 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/04/05 19:01:39 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
-int	ft_is_null(char *set, char *str)//função para verificar se o caracter deve ou ser impresso
+int	ft_is_null(char *set, char *str)
 {
 	int index;
 
@@ -30,7 +29,7 @@ int	ft_is_null(char *set, char *str)//função para verificar se o caracter deve
 int ft_dontprint(char *set, char *str, char *buffer, int i_main)
 {
 	int index;
-	//printf("opa\n");
+
 	index = (int)ft_strlen(set) - 1;
 	if (str[0] == '0' && !str[1] && set[index] == '.' && 
 	!ft_is_in_set(buffer[i_main], "sc"))
@@ -71,10 +70,11 @@ int	ft_rm_diff(int index2, char *nmbr_int1, char *str, char *buffer, int *index,
 	if (set[*index - ft_strlen(nmbr_int1) - 2] == '-')
 		*confirm = 1;
 
-	if (!set[*index - 1] && !ft_is_in_set(buffer[*i_main], "sc") && *confirm == 0
-		&& ft_isdigit(set[*index - 2]))
+	if (!set[*index - 1] && !ft_is_in_set(buffer[*i_main], "sc") 
+		&& *confirm == 0 && ft_isdigit(set[*index - 2]))
 			return (ft_set_zd(set, index2, str, buffer, i_main, 'Z'));
-	else if (!set[*index] && !ft_is_in_set(buffer[*i_main], "sc") && *confirm == 0)
+	else if (!set[*index] && !ft_is_in_set(buffer[*i_main], "sc") 
+		&& *confirm == 0)
 		return (ft_set_zd(set, index2, str, buffer, i_main, 'D'));
 	else if ((!set[*index] || set[*index] == '0') && 
 		ft_is_in_set(buffer[*i_main], "sc") && *confirm == 0)
@@ -93,4 +93,23 @@ int	ft_rm_diff(int index2, char *nmbr_int1, char *str, char *buffer, int *index,
 		return (ft_set_minus(index2, str, buffer, i_main, 0));
 	}
 	return (-1);
+}
+
+int	ft_index2(char *buffer, int i_main, char *str, char *n1, char *n2)
+{
+	int index2;
+
+	if (buffer[i_main] == 's' && (int)ft_strlen(str) < ft_atoi(n2))
+		index2 = ft_atoi(n1) - ft_strlen(str); 
+	else if (ft_atoi(n2) == 0)
+		index2 = ft_atoi(n1) - (int)ft_strlen(str);
+	else if ((int)ft_strlen(str) > ft_atoi(n2) && !ft_is_in_set(buffer[i_main], "sc"))
+		index2 = ft_atoi(n1) - ft_strlen(str);
+	else if (ft_atoi(n2) < 0)
+		index2 = ft_atoi(n1) - ft_strlen(str);
+	else
+		index2 = ft_atoi(n1) - ft_atoi(n2); 
+	if (str[0] == '-' && ft_atoi(n2) >= (int)ft_strlen(str))
+		index2--;
+	return (index2);
 }

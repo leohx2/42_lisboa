@@ -6,19 +6,13 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 21:13:56 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/04/01 22:53:03 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/04/05 18:59:39 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
-/*
-o intuito dessa função final step é ler o conteudo dentro e imprimir as flags corretamente,
-irá receber exatamente o q precisa imprimir ou alinhar. as flags por enquanto são apenas
-".-0*"  
-*/
-int	ft_final_step(char *set, va_list *list, int *i_main, char *buffer)
+int			ft_final_step(char *set, va_list *list, int *i_main, char *buffer)
 {
 	int	index;
 	int	len;
@@ -61,13 +55,6 @@ static void	ft_move(char *set, int *index2, int list_arg)
 		free(test1);
 }
 
-/*
-a funcção ft_set é responsável por formar um set com somente aquilo q posso usar, imaginando ter 
-uma sequencia de flags  iguais, "------", ou flags que são ignoradas em caso da presença de outra, como
-"000----0000", essa função é responsável por transformar os respectivos exemplos em "-" e "0-" e
-na proxima função, será feito o restante. ps o nome esta estranho, mas a primeira ideia tinha sido
-ft_set_set, informação inutil do dia.
-*/
 static int	ft_set(char *buffer, char *set, int index, va_list *list,
 					int *index2)
 {
@@ -106,10 +93,9 @@ int			ft_printf_flags(int *i_main, char *buffer, va_list *list)
 	*i_main += 1;
 	while (ft_is_in_set(buffer[*i_main], "-.*0123456789"))
 	{
-		if	(ft_set(buffer, set, *i_main, list, &index2) == 1)
+		if (ft_set(buffer, set, *i_main, list, &index2) == 1)
 			index2++;
 		*i_main += 1;
 	}
-	//printf("SET --> %s\n", set);
-	return(ft_final_step(set, list, i_main, buffer));
+	return (ft_final_step(set, list, i_main, buffer));
 }

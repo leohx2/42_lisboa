@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 08:43:43 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/04/01 23:13:31 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/04/05 18:34:36 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,14 @@ int main ()
 	char	*u = "-0";
 	int len;
 	
-	len = ft_printf("%%%%");
+	len = ft_printf("%--*.*i", -6, -3,-3);
 	printf("\nRESULTADO FT:  %i", len);
 	printf("\n---------------------------\n");
-	len = printf("%%%%");
-	//printf("\n%%%%");
+	len = printf("%--*.*i", -6, -3,-3);
 	printf("\nRESULTADO FT:  %i", len);
 	printf("\n---------------------------\n");
-	//printf("\n---------------------------\n");
 }
 /*
-int s_space_padded_field_width(void){return test("%32s", "abc");}
-int s_space_padded_field_width2(void){return test("%16s", "nark nark");}
+("%% *.5i 42 == |% *.5i|", 4, 42)
+First line of code: {return test("%.*i", -6, -3);}
 */
