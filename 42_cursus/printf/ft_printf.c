@@ -6,26 +6,29 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 11:33:07 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/04/05 18:59:28 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/04/08 21:02:32 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
-int ft_replacing(char *buffer, va_list list, int *i_main)
+int ft_replacing(char **buffer, va_list list)//
 {
+
 	char *aux;
 	int len;
 
 	len = 0;
-	while (buffer[*i_main])
+
+	while (**buffer)
 	{
-		if (buffer[*i_main] == '%')
+		if (**buffer == '%')
 		{
-			if (buffer[*i_main + 1] != '%')
-				len += ft_printf_flags(i_main, buffer, &list);
-			aux = ft_return_type(buffer, i_main, &list);
-			if (buffer[*i_main] == 'c' && aux && !aux[0])
+			if (*(*buffer + 1) != '%')
+				len += ft_printf_flags(buffer, &list);
+			aux = ft_return_type(buffer, &list);
+			if (**buffer == 'c' && aux && !aux[0])
 				len += ft_putchar(-1);
 			if (aux)
 			{
@@ -34,22 +37,22 @@ int ft_replacing(char *buffer, va_list list, int *i_main)
 			}
 		}
 		else
-			len += ft_putchar(buffer[*i_main]);
-		if (buffer[*i_main] != '%' && buffer[*i_main] != '\0')
-			*i_main += 1;
+			len += ft_putchar(**buffer);
+		if(**buffer != '%' && **buffer != '\0')	
+			*buffer += 1;
 	}
 	return (len);
 }
 
-int	ft_printf(const char *format, ...)
+int	ft_printf(const char *format, ...) //retornar o nmro de caracteres impresso em caso de sucesso e < 0 em caso de falhas.
 {
 	va_list	list;
-	int 	index;
 	int		len;
+	char	*str;
 
-	index = 0;
+	str = (char *)format;
 	va_start(list, format);
-	len = ft_replacing((char*)format, list, &index);
+	len = ft_replacing(&str, list);
 	va_end(list);
-	return (len);
+	return (len);//verificar se este return esta correto, colocado de forma provisoria para realizar os testes.
 }

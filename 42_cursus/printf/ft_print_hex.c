@@ -6,12 +6,13 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 19:20:00 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/04/05 18:59:14 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/04/05 17:58:56 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
+#include <stdio.h>
+#define LONG_MIN  (-__LONG_MAX__ -1L)
 char	*ft_invert(char *hexa)
 {
 	int		index;
