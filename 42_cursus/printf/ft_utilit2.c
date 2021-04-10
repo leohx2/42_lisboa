@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 16:43:23 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/04/10 14:04:47 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/04/10 14:32:05 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,22 @@
 
 int	ft_is_null(set_str *set)//função para verificar se o caracter deve ou ser impresso
 {
-	//printf("buffer is null -> %s\n", *buffer - 3);
-	//printf("str is null -> %s.\n", str);
 	if (*(set->set - 1) == '0' && *(set->set - 2) == '.' && (set->str[0] == 32 && !set->str[1])
 		&& (!ft_isdigit(*(set->set - 3)) || !*(set->set - 3)))
+		return (1);
+	if (*(set->set - 1) == '0' && *(set->set - 2) == '.' && (set->str[0] == 32 && !set->str[1])
+		&& (*(set->set - 3) == '0'))
 		return (1);
 	return (0);
 }
 
 int ft_dontprint(set_str *set, char **buffer)
 {
-	//printf("buffer dontprint -> %s\n", *buffer - 1);
-	//printf("str is dontprint -> %s\n", str);
 	if (set->str[0] == '0' && !set->str[1] && *(set->set - 1) == '.' && 
 		!ft_is_in_set(**buffer, "sc"))
+		set->str[0] = 32;
+	if (set->str[0] == '0' && !set->str[1] && *(set->set - 1) == '0'
+		&& !ft_is_in_set(**buffer, "sc") && *(set->set - 2) == '.')
 		set->str[0] = 32;
 	return (1);
 }

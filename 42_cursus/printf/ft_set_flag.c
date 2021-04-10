@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 21:42:25 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/04/10 14:05:13 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/04/10 14:26:12 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static int ft_set_dot(int nmbr_int, set_str *set, char **buffer, int index2)
 	{
 		while (aux++ < (nmbr_int - (int)ft_strlen(set->str)))
 			v_ret += ft_putchar(48);
-		if (!ft_is_null(set) && ft_dontprint(set, buffer))// e seu usar o buffer?
+		if (ft_dontprint(set, buffer) && !ft_is_null(set))// e seu usar o buffer?
 			v_ret += ft_putstr(set->str + helper);
 	}
 	while (index2-- > 0)

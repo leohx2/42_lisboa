@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 11:33:07 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/04/08 21:02:32 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/04/10 14:41:34 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,10 @@
 
 int ft_replacing(char **buffer, va_list list)//
 {
-
 	char *aux;
 	int len;
 
 	len = 0;
-
 	while (**buffer)
 	{
 		if (**buffer == '%')

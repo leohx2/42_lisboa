@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 21:13:56 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/04/10 14:03:07 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/04/10 14:40:41 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,6 @@ static void	ft_move(char *set, int *index2, int list_arg)
 {
 	char *test1;
 
-	if (list_arg == 0)
-		return ;
 	test1 = ft_itoa(list_arg);
 	ft_memmove(set + *index2, test1, ft_strlen(test1));
 	*index2 += ft_strlen(test1) - 1;
@@ -72,7 +70,8 @@ static int	ft_set(char **buffer, char *set, va_list *list, int *index2)
 			&& *index2 <= 1)
 		set[*index2] = **buffer;
 	else if (**buffer == '0' && (ft_isdigit(set[*index2 - 1]) || 
-			set[*index2 - 1] == '.') && ft_is_last(*buffer, 1) == 1)
+			set[*index2 - 1] == '.') && ft_is_last(*buffer, 1) == 1
+			&& set[*index2 - 1] != '0')
 			set[*index2] = '0';
 	else if (**buffer == '0' && !ft_isdigit(*(*buffer - 1))
 			&& !ft_strchr(set, '-') && !ft_strchr(set, 'Z') &&
@@ -107,6 +106,6 @@ int			ft_printf_flags(char **buffer, va_list *list)
 			index2++;
 		*buffer += 1;
 	}
-	//printf("set -> %s\n", set);
+	//printf("set -> %s\n", set.set);
 	return(ft_final_step(&set, list, buffer));
 }
