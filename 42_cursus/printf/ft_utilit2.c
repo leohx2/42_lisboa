@@ -6,26 +6,30 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 16:43:23 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/04/08 23:06:25 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/04/10 14:04:47 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
 
-int	ft_is_null(char **set, char *str)//função para verificar se o caracter deve ou ser impresso
+int	ft_is_null(set_str *set)//função para verificar se o caracter deve ou ser impresso
 {
-	if (*(*set - 1) == '0' && *(*set - 2) == '.' && (str[0] == 32 && !str[1])
-	&& (!ft_isdigit(*(*set - 3)) || !*(*set - 3)))
+	//printf("buffer is null -> %s\n", *buffer - 3);
+	//printf("str is null -> %s.\n", str);
+	if (*(set->set - 1) == '0' && *(set->set - 2) == '.' && (set->str[0] == 32 && !set->str[1])
+		&& (!ft_isdigit(*(set->set - 3)) || !*(set->set - 3)))
 		return (1);
 	return (0);
 }
 
-int ft_dontprint(char **set, char *str, char **buffer)
+int ft_dontprint(set_str *set, char **buffer)
 {
-	if (str[0] == '0' && !str[1] && *(*set - 1) == '.' && 
-	!ft_is_in_set(**buffer, "sc"))
-		str[0] = 32;
+	//printf("buffer dontprint -> %s\n", *buffer - 1);
+	//printf("str is dontprint -> %s\n", str);
+	if (set->str[0] == '0' && !set->str[1] && *(set->set - 1) == '.' && 
+		!ft_is_in_set(**buffer, "sc"))
+		set->str[0] = 32;
 	return (1);
 }
 
@@ -55,30 +59,31 @@ int	ft_help_dot(char *str, char **buffer, int *helper, int *nmbr_int)
 	return (0);
 }
 
-int	ft_rm_diff(int index2, char *nmbr_int1, char *str, char **buffer, char **set, int *confirm)
+int	ft_rm_diff(int index2, set_str *set, char **buffer)
 {
-	if (*(*set - ft_strlen(nmbr_int1) - 2) == '-')
-		*confirm = 1;
-	if (!*(*set - 1) && !ft_is_in_set(**buffer, "sc") && *confirm == 0
-		&& ft_isdigit(*(*set - 2)))
-			return (ft_set_zd(set, index2, str, buffer, 'Z'));
-	else if (!**set && !ft_is_in_set(**buffer, "sc") && *confirm == 0)
-		return (ft_set_zd(set, index2, str, buffer, 'D'));
-	else if ((!**set || **set == '0') && 
-		ft_is_in_set(**buffer, "sc") && *confirm == 0)
+	int	confirm;
+
+	confirm = isit_negative(set->set);
+	if (!*(set->set - 1) && !ft_is_in_set(**buffer, "sc") && confirm == 0
+		&& ft_isdigit(*(set->set - 2)))
+			return (ft_set_zd(index2, set, buffer, 'Z'));
+	else if (!*set->set && !ft_is_in_set(**buffer, "sc") && confirm == 0)
+		return (ft_set_zd(index2, set, buffer, 'D'));
+	else if ((!*set->set || *set->set == '0') && 
+		ft_is_in_set(**buffer, "sc") && confirm == 0)
 	{
-		index2 += (int)ft_strlen(str);
-		*set += (int)ft_strlen(*set);
-		str[0] = 0;
-		return (ft_set_zd(set, index2, str, buffer, 'd'));
+		index2 += (int)ft_strlen(set->str);
+		set->set += (int)ft_strlen(set->set);
+		set->str[0] = 0;
+		return (ft_set_zd(index2, set, buffer, 'd'));
 	}
-	else if ((!**set || **set == '0') && 
-		ft_is_in_set(**buffer, "sc") && *confirm == 1)
+	else if ((!*set->set || *set->set == '0') && 
+		ft_is_in_set(**buffer, "sc") && confirm == 1)
 	{
-		index2 += (int)ft_strlen(str);
-		*set += (int)ft_strlen(*set);
-		str[0] = 0;
-		return (ft_set_minus(index2, str, buffer, 0));
+		index2 += (int)ft_strlen(set->str);
+		set->set += (int)ft_strlen(set->set);
+		set->str[0] = 0;
+		return (ft_set_minus(index2, set, buffer, 0));
 	}
 	return (-1);
 }
@@ -117,4 +122,20 @@ int	ft_rvlen(char *buffer)
 	while (*(--buffer))
 		size++;
 	return (size);
+}
+
+int	isit_negative(char *str) //index tem o valor de -2 porque avalia o set, da função rm_diff, 
+//o qual chega com o valor null, diminuindo 1 chegamos ao . e se diminuir mais, encontrado os digitos,
+//tendo em conta que somente chegará para o rm_diff se for algo como %*.d ou %-*.d ou %*.*s, onde * é uma incognita
+// de valor real
+{
+	int index;
+
+	index = -2;
+	while (ft_isdigit(str[index]))
+		index--;
+	if (str[index] == '-')
+		return (1);
+	else
+		return (0);
 }
