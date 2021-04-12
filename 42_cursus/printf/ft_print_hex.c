@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 19:20:00 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/04/12 09:31:13 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/04/12 19:24:36 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ char	*ft_invert(char *hexa)
 	index2 = 0;
 	while (hexa[index2])
 	{
-		temp[index2] = hexa[index - index2 - 1]; 
+		temp[index2] = hexa[index - index2 - 1];
 		index2++;
 	}
 	free(hexa);
-	return(temp);
+	return (temp);
 }
 
 char	*ft_print_hex(char letter, TEST nmb)
@@ -44,7 +44,7 @@ char	*ft_print_hex(char letter, TEST nmb)
 	index = 0;
 	while (nmb != 0)
 	{
-		temp = nmb%16;
+		temp = nmb % 16;
 		if (temp < 10)
 			temp = temp + 48;
 		else if (temp >= 10 && letter == 'X')
@@ -71,7 +71,7 @@ char	*ft_print_memory(ULLONG nmb)
 	index = 0;
 	while (nmb != 0)
 	{
-		temp = nmb%16;
+		temp = nmb % 16;
 		if (temp < 10)
 			temp = temp + 48;
 		else

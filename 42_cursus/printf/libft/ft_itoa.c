@@ -6,13 +6,13 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 14:10:41 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/04/01 11:29:33 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/04/12 20:13:22 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		ft_value(int n)
+static int	ft_value(int n)
 {
 	int	count;
 
@@ -22,7 +22,7 @@ static int		ft_value(int n)
 	return (count);
 }
 
-static void		ft_make_str(int nmbr_size, int n, char *str_aux, int aux)
+static void	ft_make_str(int nmbr_size, int n, char *str_aux, int aux)
 {
 	while (nmbr_size >= 10)
 	{
@@ -41,7 +41,7 @@ static void		ft_make_str(int nmbr_size, int n, char *str_aux, int aux)
 	str_aux[aux] = 0;
 }
 
-char			*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	char	*to_return;
 	char	*str_aux;
@@ -49,7 +49,8 @@ char			*ft_itoa(int n)
 	int		nmbr_size;
 
 	aux = 0;
-	if (!(str_aux = (char*)malloc(12 * sizeof(char))))
+	str_aux = (char *)malloc(12 * sizeof(char));
+	if (!(str_aux))
 		return (0);
 	if (n == -2147483648)
 	{

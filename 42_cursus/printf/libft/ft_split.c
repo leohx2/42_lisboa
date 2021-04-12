@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 18:48:01 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/02/24 16:55:08 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/04/12 20:19:57 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static int	ft_isset(char *s, char c)
 {
-	int count;
-	int aux;
-	int aux2;
+	int	count;
+	int	aux;
+	int	aux2;
 
 	aux2 = 0;
 	aux = 0;
@@ -39,9 +39,9 @@ static int	ft_isset(char *s, char c)
 
 static int	ft_set_mem(char **to_return, int size, char *s, char c)
 {
-	int start;
-	int end;
-	int aux;
+	int	start;
+	int	end;
+	int	aux;
 
 	aux = 0;
 	start = 0;
@@ -67,7 +67,7 @@ static int	ft_set_mem(char **to_return, int size, char *s, char c)
 
 static void	ft_be_free_like_a_bird(char **to_free)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (to_free[i])
@@ -81,18 +81,18 @@ static void	ft_be_free_like_a_bird(char **to_free)
 
 char	**ft_split(char const *s, char c)
 {
-	char **to_return;
-	int aux;
+	char	**to_return;
+	int		aux;
 
 	aux = 0;
 	if (!s)
 		return (NULL);
-	to_return = (char**)ft_calloc(ft_isset((char*)s, c), sizeof(char*));
-	if(!to_return)
+	to_return = (char **)ft_calloc(ft_isset((char *)s, c), sizeof(char *));
+	if (!to_return)
 		return (NULL);
-	if (ft_isset((char*)s, c) == 1)
+	if (ft_isset((char *)s, c) == 1)
 		return (to_return);
-	if(!(ft_set_mem(to_return, ft_isset((char*)s, c), (char*)s, c)))
+	if (!(ft_set_mem(to_return, ft_isset((char *)s, c), (char *)s, c)))
 	{
 		ft_be_free_like_a_bird(to_return);
 		free(to_return);

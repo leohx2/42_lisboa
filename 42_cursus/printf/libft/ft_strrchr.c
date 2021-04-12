@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 13:59:30 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/02/22 16:30:17 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/04/12 20:24:32 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,5 @@ char	*ft_strrchr(const char *s, int c)
 		to_return = aux;
 	if (to_return == -1)
 		return (0);
-	return ((char*)(s + to_return));
+	return ((char *)(s + to_return));
 }

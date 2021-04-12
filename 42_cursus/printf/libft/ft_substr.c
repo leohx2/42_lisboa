@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 19:28:19 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/02/24 09:14:02 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/04/12 20:26:39 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@ unsigned int len)
 	else
 		alloc = len;
 	if (ft_strlen(s) < start || len == 0)
-		return (str_aux = (char*)ft_calloc(2, 1));
-	if (!(str_aux = (char*)ft_calloc(alloc + 1, sizeof(char))))
+		return (str_aux = (char *)ft_calloc(2, 1));
+	str_aux = (char *)ft_calloc(alloc + 1, sizeof(char));
+	if (!(str_aux))
 		return (NULL);
 	aux = 0;
 	while (aux < len && s[start])

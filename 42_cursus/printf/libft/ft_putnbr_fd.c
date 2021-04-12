@@ -6,13 +6,13 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 16:53:40 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/02/21 16:59:13 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/04/12 20:18:18 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-static int		ft_size10(int n)
+static int	ft_size10(int n)
 {
 	int	count;
 
@@ -24,8 +24,8 @@ static int		ft_size10(int n)
 
 static void	ft_putfd(int size, int fd, int n)
 {
-	char c;
-	
+	char	c;
+
 	while (size >= 10)
 	{
 		c = (n / size) + 48;
@@ -36,13 +36,13 @@ static void	ft_putfd(int size, int fd, int n)
 	if (n >= 10)
 	{
 		c = (n / 10) + 48;
-		write(fd, &c, sizeof(char)); 
+		write(fd, &c, sizeof(char));
 	}
 	c = n + 48;
 	write(fd, &c, sizeof(char));
 }
 
-void		ft_putnbr_fd(int n, int fd)
+void	ft_putnbr_fd(int n, int fd)
 {
 	int		size;
 

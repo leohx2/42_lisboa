@@ -6,13 +6,14 @@
 #    By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/27 11:05:35 by lrosendo          #+#    #+#              #
-#    Updated: 2021/04/01 20:55:53 by lrosendo         ###   ########.fr        #
+#    Updated: 2021/04/12 20:33:13 by lrosendo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 	= libftprintf.a
 SRC 	= ft_print_hex.c ft_printf_flags.c ft_printf_utilit.c ft_printf.c \
-		ft_putchar.c ft_putstr.c ft_set_flag.c ft_unsigned_itoa.c ft_utilit2.c
+		ft_putchar.c ft_putstr.c ft_set_flag.c ft_unsigned_itoa.c ft_utilit2.c\
+		ft_utilit3.c
 OBJ		= ${SRC:.c=.o}
 NAME2	= libft/ft_atoi.o libft/ft_calloc.o libft/ft_isdigit.o libft/ft_itoa.o \
 		libft/ft_memmove.o libft/ft_strchr.o libft/ft_strdup.o libft/ft_strlen.o \

@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 13:59:08 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/02/15 17:21:56 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/04/12 20:22:54 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ static size_t	ft_len(const char *str)
 	return (index);
 }
 
-size_t			ft_strlcat(char *dst, const char *src, size_t size)
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	size_t to_return;
-	size_t index;
-	size_t dst_size;
-	size_t src_size;
+	size_t	to_return;
+	size_t	index;
+	size_t	dst_size;
+	size_t	src_size;
 
 	dst_size = ft_len(dst);
 	src_size = ft_len(src);

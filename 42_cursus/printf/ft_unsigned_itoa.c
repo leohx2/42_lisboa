@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 10:58:24 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/04/12 09:53:32 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/04/12 20:05:23 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ static long int	ft_value(unsigned int n)
 	return (count);
 }
 
-static void	ft_make_str(long int nmbr_size, unsigned int n, 
-				char *str_aux, int aux)
+static void	ft_make_str(long int nmbr_size, unsigned int n
+	, char *str_aux, int aux)
 {
 	while (nmbr_size >= 10)
 	{
@@ -50,7 +50,8 @@ char	*ft_unsigned_itoa(unsigned int n)
 	long int	nmbr_size;
 
 	aux = 0;
-	if (!(str_aux = (char*)malloc(12 * sizeof(char))))
+	str_aux = (char *)malloc(12 * sizeof(char));
+	if (!(str_aux))
 		return (0);
 	nmbr_size = ft_value(n);
 	ft_make_str(nmbr_size, n, str_aux, aux);

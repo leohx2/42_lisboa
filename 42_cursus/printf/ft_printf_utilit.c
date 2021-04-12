@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 15:21:19 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/04/12 09:35:51 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/04/12 20:38:01 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_is_in_set(char c, char *set)
 	i = 0;
 	if (!c || !set)
 		return (0);
-	while(set[i])
+	while (set[i])
 	{
 		if (c == set[i])
 			return (1);
@@ -33,28 +33,25 @@ int	ft_is_last(char *set, int choice)
 	int	index;
 
 	index = 1;
-	while(ft_isdigit(set[index]))
+	while (ft_isdigit(set[index]))
 		index++;
 	if (choice == 1)
 	{
-		if(ft_is_in_set(set[index], "Z-*"))
+		if (ft_is_in_set(set[index], "Z-*"))
 			return (0);
-		if(set[index] == '0' && set[index - 1] == '0')
+		if (set[index] == '0' && set[index - 1] == '0')
 			return (0);
 	}
+	if (choice == 2)
+		if (ft_is_in_set(set[index], "Z-*"))
+			return (0);
 	if (choice == 3)
 	{
-		if(set[index] == '.')
+		if (set[index] == '.')
 			return (3);
-		if(ft_is_in_set(set[index], "Z-*"))
+		if (ft_is_in_set(set[index], "Z-*"))
 			return (0);
 	}
-	if (choice == 4)
-		if(ft_is_in_set(set[index], "Z-."))
-			return (0);
-	if (choice == 2)
-		if(ft_is_in_set(set[index], "Z-*"))
-			return (0);
 	return (1);
 }
 
@@ -73,7 +70,7 @@ static char	*ft_percent(char **buffer)
 
 char	*ft_return_type(char **buffer, va_list *list)
 {
-	char *to_char;
+	char	*to_char;
 
 	if (**buffer == 's')
 		return (ft_strdup(va_arg(*list, char *)));
@@ -98,7 +95,7 @@ char	*ft_return_type(char **buffer, va_list *list)
 
 void	ft_index1(char **set, int flag, char *nmbr_a)
 {
-	int		index2;
+	int	index2;
 
 	index2 = 0;
 	if (flag != 'D' && flag != 'd')
@@ -106,7 +103,7 @@ void	ft_index1(char **set, int flag, char *nmbr_a)
 	else if (flag == 'D' || flag == 'd')
 		while (!ft_isdigit(**set))
 			*set += 1;
-	if(*(*set -1) && *(*set - 2) && *(*set -1) == '-' && *(*set - 2) == '.')
+	if (*(*set - 1) && *(*set - 2) && *(*set - 1) == '-' && *(*set - 2) == '.')
 		nmbr_a[index2++] = '-';
 	while (ft_isdigit(**set))
 	{
