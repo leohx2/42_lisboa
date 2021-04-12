@@ -6,13 +6,13 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 10:58:24 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/03/15 18:49:56 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/04/12 09:53:32 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static long int		ft_value(unsigned int n)
+static long int	ft_value(unsigned int n)
 {
 	long int	count;
 
@@ -22,7 +22,7 @@ static long int		ft_value(unsigned int n)
 	return (count);
 }
 
-static void		ft_make_str(long int nmbr_size, unsigned int n, 
+static void	ft_make_str(long int nmbr_size, unsigned int n, 
 				char *str_aux, int aux)
 {
 	while (nmbr_size >= 10)
@@ -42,7 +42,7 @@ static void		ft_make_str(long int nmbr_size, unsigned int n,
 	str_aux[aux] = 0;
 }
 
-char			*ft_unsigned_itoa(unsigned int n)
+char	*ft_unsigned_itoa(unsigned int n)
 {
 	char		*to_return;
 	char		*str_aux;

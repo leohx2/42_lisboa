@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 11:33:07 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/04/10 14:56:38 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/04/12 09:37:47 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int ft_replacing(set_str *set, va_list *list)//
 	return (len);
 }
 
-int	ft_printf(const char *format, ...) //retornar o nmro de caracteres impresso em caso de sucesso e < 0 em caso de falhas.
+int	ft_printf(const char *format, ...)
 {
 	va_list	list;
 	int		len;
@@ -52,5 +52,5 @@ int	ft_printf(const char *format, ...) //retornar o nmro de caracteres impresso 
 	va_start(list, format);
 	len = ft_replacing(&set, &list);
 	va_end(list);
-	return (len);//verificar se este return esta correto, colocado de forma provisoria para realizar os testes.
+	return (len);
 }

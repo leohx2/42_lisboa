@@ -6,17 +6,17 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 11:31:08 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/04/10 15:14:58 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/04/12 09:38:03 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef	FT_PRINTF_H
 # define FT_PRINTF_H
 # ifndef ULLONG
-#	define ULLONG unsigned long int
+#  define ULLONG unsigned long int
 # endif
 # ifndef TEST
-#	define TEST unsigned int
+#  define TEST unsigned int
 # endif
 # include "libft/libft.h"
 # include <stdarg.h>

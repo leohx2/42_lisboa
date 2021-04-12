@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 16:43:23 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/04/10 15:09:12 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/04/12 09:53:43 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,10 +127,7 @@ int	ft_rvlen(char *buffer)
 	return (size);
 }
 
-int	isit_negative(char *str) //index tem o valor de -2 porque avalia o set, da função rm_diff, 
-//o qual chega com o valor null, diminuindo 1 chegamos ao . e se diminuir mais, encontrado os digitos,
-//tendo em conta que somente chegará para o rm_diff se for algo como %*.d ou %-*.d ou %*.*s, onde * é uma incognita
-// de valor real
+int	isit_negative(char *str)
 {
 	int index;
 

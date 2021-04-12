@@ -6,22 +6,19 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 21:42:25 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/04/10 15:19:57 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/04/12 09:53:02 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
-//essa func tem como utilidade imprimir a flag 0; nmb = nmro para imprimir após as flags, tem de
-// ser levado em consideração devido ao "len" do nmb
-int	ft_set_zd(int index2, set_str *set, int f)//arrumar para quando o nmro for negativo ou for str..
+int	ft_set_zd(int index2, set_str *set, int f)
 {
 	int		v_ret;
 	int		helper;
 
 	helper = 0;
-	v_ret = 0;//value_return
+	v_ret = 0;
 	if (*set->str == '-' && f == 'Z' && ++helper)
 		v_ret += ft_putchar('-');
 	while (index2-- > 0)
@@ -42,8 +39,7 @@ int	ft_set_minus(int index2, set_str *set, int D)//achar alguma fucking maneira 
 {
 	int		v_ret;
 
-	//printf("\nbuffer1 -> %s\n", *buffer);
-	v_ret = 0;//value_return
+	v_ret = 0;
 	if (D > 0)
 	{
 		D = D - ft_strlen(set->str);
@@ -63,12 +59,12 @@ static int ft_set_dot(int nmbr_int, set_str *set, int index2)
 	int		aux;
 	int		v_ret;
 	int		helper;
-	//printf("\nNMBR -> %i\n", nmbr_int);
+
 	helper = 0;
 	aux = ft_help_dot(set, &helper, &nmbr_int);
 	v_ret = aux;
 	if (*set->buffer == 'c' && set->str && !set->str[0])
-			v_ret += ft_putchar(-1);// verificando quando temos q imprimir um 0/;
+			v_ret += ft_putchar(-1);
 	if ((*set->buffer == 's' || *set->buffer == 'c') && nmbr_int >= 0)
 		while(aux < nmbr_int && set->str && set->str[aux])
 			v_ret += ft_putchar(set->str[aux++]);
@@ -78,7 +74,7 @@ static int ft_set_dot(int nmbr_int, set_str *set, int index2)
 	{
 		while (aux++ < (nmbr_int - (int)ft_strlen(set->str)))
 			v_ret += ft_putchar(48);
-		if (ft_dontprint(set) && !ft_is_null(set))// e seu usar o buffer?
+		if (ft_dontprint(set) && !ft_is_null(set))
 			v_ret += ft_putstr(set->str + helper);
 	}
 	while (index2-- > 0)
@@ -86,17 +82,6 @@ static int ft_set_dot(int nmbr_int, set_str *set, int index2)
 	return (v_ret);
 }
 
-/*
-index, variavel auxiliar a qual vem com o valor de ft_atoi(nmbr_ascii) - (int)ft_strlen(str), caso
-seja necessario chamar o ft_set_zd. Não sendo necessario ela recebe o valor de 0 e tem o proposito
-de ser um index auxiliar. 
-nmbr_int1 = se for o caso de ser uma flag valor1.valor2 o valor1 é atribuído ao nmbr_int1 para subtrair
-com o nmbr_int2, q sera o valor2, assim poderei calcular quantos espaços imprimir corretamente.
-str = versão em caracteres do proximo elemento da list,
-buffer = format original do printf
-*index = ultima casa do set analisada na ultima função,
-*i_main = index da casa do buffer que estamos analisando.
-*/
 int ft_set_digit(int index2, char *nmbr_int1, set_str *set)
 {
 	char	nmbr_int2[20];
@@ -110,7 +95,7 @@ int ft_set_digit(int index2, char *nmbr_int1, set_str *set)
 	len = ft_rm_diff(index2, set);
 	if (len > -1)
 		return (len);
-	len = 0;// voltando a 0, -1 siginifica que o rm_diff não redirecionou pra outro lado.
+	len = 0;
 	index2 = 0;
 	while (ft_isdigit(*set->set) || *set->set == '-')
 	{
@@ -118,7 +103,6 @@ int ft_set_digit(int index2, char *nmbr_int1, set_str *set)
 		set->set += 1;
 	}
 	index2 = ft_index2(set, nmbr_int1, nmbr_int2);
-	//printf("INDEX2 -> %i\n", index2);
 	if (neg == 1)
 		return (ft_set_dot(ft_atoi(nmbr_int2), set, index2));
 	while (index2-- > 0)
@@ -130,7 +114,7 @@ int ft_set_flag(set_str *set, va_list *list, int flag)
 {
 	dummy	aux;
 	char	nmbr_a[20];
-	//printf("\nFLAG -> %c\n", flag);
+
 	aux.v_ret = 0;
 	ft_index1(&set->set, flag, nmbr_a);
 	if (ft_is_in_set(*set->set, "Z-*"))

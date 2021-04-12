@@ -6,20 +6,19 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 19:20:00 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/04/05 17:58:56 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/04/12 09:31:13 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
-#define LONG_MIN  (-__LONG_MAX__ -1L)
+
 char	*ft_invert(char *hexa)
 {
 	int		index;
 	int		index2;
 	char	*temp;
 
-	temp = (char*)ft_calloc(sizeof(char), ft_strlen(hexa) + 1);
+	temp = (char *)ft_calloc(sizeof(char), ft_strlen(hexa) + 1);
 	index = ft_strlen(hexa);
 	index2 = 0;
 	while (hexa[index2])
@@ -41,7 +40,7 @@ char	*ft_print_hex(char letter, TEST nmb)
 		nmb = 4294967295;
 	else if (nmb == 0)
 		return (ft_strdup("0"));
-	hexa = (char*)ft_calloc(sizeof(char), 100);
+	hexa = (char *)ft_calloc(sizeof(char), 100);
 	index = 0;
 	while (nmb != 0)
 	{
@@ -64,12 +63,11 @@ char	*ft_print_memory(ULLONG nmb)
 	char	*hexa;
 	int		index;
 
-
 	if (nmb == 0)
 		return (ft_strdup("0x0"));
 	else if (nmb == 0)
 		return (ft_strdup("0"));
-	hexa = (char*)ft_calloc(sizeof(char), 100);
+	hexa = (char *)ft_calloc(sizeof(char), 100);
 	index = 0;
 	while (nmb != 0)
 	{

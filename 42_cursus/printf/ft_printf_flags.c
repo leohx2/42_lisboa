@@ -6,18 +6,12 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 21:13:56 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/04/10 15:19:29 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/04/12 09:32:25 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
-/*
-o intuito dessa função final step é ler o conteudo dentro e imprimir as flags corretamente,
-irá receber exatamente o q precisa imprimir ou alinhar. as flags por enquanto são apenas
-".-0*"  
-*/
 int	ft_final_step(set_str *set, va_list *list)
 {
 	int	len;
@@ -25,7 +19,6 @@ int	ft_final_step(set_str *set, va_list *list)
 	len = 0;
 	while (*set->set)
 	{
-		//printf("\nSET ->%s\n",set);
 		if (*set->set == 'Z' && !ft_strchr(set->set, '-') && 
 			ft_is_last(set->set, 3) == 1)
 			len += ft_set_flag(set, list, 'Z');
@@ -57,13 +50,6 @@ static void	ft_move(char *set, int *index2, int list_arg)
 		free(test1);
 }
 
-/*
-a funcção ft_set é responsável por formar um set com somente aquilo q posso usar, imaginando ter 
-uma sequencia de flags  iguais, "------", ou flags que são ignoradas em caso da presença de outra, como
-"000----0000", essa função é responsável por transformar os respectivos exemplos em "-" e "0-" e
-na proxima função, será feito o restante. ps o nome esta estranho, mas a primeira ideia tinha sido
-ft_set_set, informação inutil do dia.
-*/
 static int	ft_set(set_str *set, va_list *list, int *index2)
 {
 	if (*set->buffer == '-' && !ft_strchr(set->set, '-') 
@@ -92,11 +78,11 @@ static int	ft_set(set_str *set, va_list *list, int *index2)
 	return (1);
 }
 
-int			ft_printf_flags(set_str *set, va_list *list)
+int	ft_printf_flags(set_str *set, va_list *list)
 {
-	int		index2;
+	int	index2;
 
-	set->set = (char*)ft_calloc(sizeof(char), 1024);
+	set->set = (char *)ft_calloc(sizeof(char), 1024);
 	index2 = 0;
 	set->buffer += 1;
 	while (ft_is_in_set(*set->buffer, "-.*0123456789"))
@@ -105,6 +91,5 @@ int			ft_printf_flags(set_str *set, va_list *list)
 			index2++;
 		set->buffer += 1;
 	}
-	//printf("set -> %s\n", set.set);
 	return(ft_final_step(set, list));
 }
