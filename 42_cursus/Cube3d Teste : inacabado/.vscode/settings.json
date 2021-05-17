@@ -1,0 +1,8 @@
+{
+	"files.associations": {
+		"ios": "c",
+		"chrono": "c",
+		"iterator": "c",
+		"rays.h": "c"
+	}
+}
