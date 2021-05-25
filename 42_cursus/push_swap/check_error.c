@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 09:52:38 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/05/17 11:59:26 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/05/25 11:03:16 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,29 @@ void	check_size(char *argv)
 	}
 }
 
+void	check_repeated(t_swap numbers, int posicion)
+{
+	int	index;
+
+	index = posicion - 1;
+	while (index > 0)
+	{
+		if (ft_atoi(numbers.argv[posicion]) == ft_atoi(numbers.argv[index]))
+		{
+			ft_putstr("Error\n");
+			exit(EXIT_FAILURE);
+		}
+		index--;
+	}
+	
+}
+
 void	check_error(t_swap numbers)
 {
 	int i;
 
 	i = 1;
-	if (numbers.argc == 1)
+	if (numbers.argc < 3)
 	{
 		ft_putstr("Error\n");
 		exit(EXIT_FAILURE);
@@ -54,6 +71,7 @@ void	check_error(t_swap numbers)
 	{
 		check_arg(numbers.argv[i]);
 		check_size(numbers.argv[i]);
+		check_repeated(numbers, i);
 		i++;
 	}
 }
