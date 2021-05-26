@@ -6,7 +6,7 @@
 #    By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/16 16:41:07 by lrosendo          #+#    #+#              #
-#    Updated: 2021/05/17 09:43:14 by lrosendo         ###   ########.fr        #
+#    Updated: 2021/05/26 11:24:18 by lrosendo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ bonus: ${NAME} ${BONUS} ${BONUS_OBJS}
 
 clean:
 	@rm -f ${OBJ} ${BONUS_OBJS}
-	@echo "Cleaning Libf"
+	@echo "Cleaning Libft"
 
 .PHONY: clean
 fclean: clean

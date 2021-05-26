@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 09:10:37 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/05/25 13:15:35 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/05/26 11:06:23 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ typedef struct push_swap
 	//int snd_smallest_b;
 	int	argc;
 	char **argv;
+	int	limit_a;
+	int	limit_b;
 }	t_swap;
 
 
@@ -55,6 +57,12 @@ int		ft_putstr(const char *s);
 void	check_error(t_swap numbers);
 int		check_order(t_swap *numbers);
 int		order_a(t_swap *numbers, int size, t_order *to_do);
-void	ft_print_todo(t_order to_do);
+void	ft_print_todo(t_swap *numbers, t_order to_do);
+void	exec_todo(t_swap *numbers, t_order *to_do);
+void	exec_sa(t_swap *number);
+void	exec_ra(t_swap *number);
+void	exec_rra(t_swap *number);
+void	exec_pb(t_swap *number);
+int		pb_case1(t_swap *number);
 
 #endif
