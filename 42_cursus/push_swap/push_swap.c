@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 09:05:19 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/05/26 11:18:41 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/07/20 12:37:35 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,59 +42,99 @@ void	normalize(t_order *to_do)
 	to_do->rrr = 0;
 }
 
+void	printa_dpsTira(t_swap *numbers)
+{
+	int i = 0;
+	
+	printf("-------INICIO------\n");
+	printf("------A\n");
+	while (i < numbers->limit_a)
+	{
+		printf("%d\n",numbers->numbers_a[i]);
+		i++;	
+	}
+	printf("------B\n");
+	i = 0;
+	while (i < numbers->limit_b)
+	{
+		printf("%d\n",numbers->numbers_b[i]);
+		i++;	
+	}
+	printf("-------FIM------\n");
+}
+
 void	loop_ordering(t_swap *numbers)
 {
-	int		safe;
 	t_order to_do;
 
-	safe = 0; //retirar isso dps, só para proteger de looping enquanto testo.
 	numbers->limit_a = numbers->argc - 1;
 	numbers->limit_b = 0;
-	while (check_order(numbers) && safe < 10)//dps colocar a ordem do stack B tbm!
-	{
-		//printf("-------INICIO------\n");
-		normalize(&to_do);
-		order_a(numbers, numbers->argc - 1, &to_do);
-		ft_print_todo(numbers, to_do);
-		safe++;
-		//exec_todo(numbers, &to_do); Refinar e deixar apenas os itens corretos, ex: se tiver Sa == 1 e Sb == 1, fazer SS = 1.
-	}
-	printf("SAFE VERIFY -> %d\t LIMIT -> %d\n", safe, numbers->limit_a);
-	//while (check_order(numbers) || safe < 10) // ainda verifica apenas a ordem do stack A 
-	//{
-	//	order_a(numbers);
-	//	order_b(numbers); TO DO...
-	//	safe++;
-	//}
+	numbers->b_used = 0;
+	if (numbers->argc > 6) // somente se houver 6 ou mais itens passados.
+		more_than_five(numbers, &to_do);
+	else
+		five_or_less(numbers, &to_do);
 }
 
 void	ft_print_todo(t_swap *numbers, t_order to_do)
 {
 	if (to_do.sa == 1)
-		exec_sa(numbers);
+	{
+		exec_ss(numbers, 'a');
+		ft_putstr("sa\n");
+	}
 	if (to_do.sb == 1)
-		ft_putstr("sb\n");//TO_DO
+	{
+		exec_ss(numbers, 'b');
+		ft_putstr("sb\n");
+	}
 	if (to_do.ss == 1)
-		ft_putstr("ss\n");//TO_DO
+	{
+		exec_ss(numbers, 'a');
+		exec_ss(numbers, 'b');
+		ft_putstr("ss\n");
+	}
 	if (to_do.pa == 1)
-		ft_putstr("pa\n");//TO_DO
+	{
+		exec_pp(numbers, 'b');
+		ft_putstr("pa\n");
+	}
 	if (to_do.pb == 1)
-		exec_pb(numbers);
+	{
+		exec_pp(numbers, 'a');
+		ft_putstr("pb\n");
+	}
 	if (to_do.ra == 1)
 	{
-		exec_ra(numbers);
+		exec_rr(numbers, 'a', numbers->limit_a);
 		ft_putstr("ra\n");
 	}
 	if (to_do.rb == 1)
-		ft_putstr("rb\n");//TO_DO
+	{
+		exec_rr(numbers, 'b', numbers->limit_b);
+		ft_putstr("rb\n");
+	}
 	if (to_do.rr == 1)
-		ft_putstr("rr\n");//TO_DO
+	{
+		exec_rr(numbers, 'a', numbers->limit_a);
+		ft_putstr("ra\n");
+	}
 	if (to_do.rra == 1)
-		exec_rra(numbers);
+	{
+		exec_rrr(numbers, 'a', numbers->limit_a);
+		ft_putstr("rra\n");
+	}
 	if (to_do.rrb == 1)
-		ft_putstr("rrb\n");//TO_DO
+	{
+		exec_rrr(numbers, 'b', numbers->limit_b);
+		ft_putstr("rrb\n");
+	}
 	if (to_do.rrr == 1)
-		ft_putstr("rrr\n");//TO_DO
+	{
+		exec_rrr(numbers, 'a', numbers->limit_b);
+		exec_rrr(numbers, 'b', numbers->limit_b);
+		ft_putstr("rrr\n");
+	}
 }
 
 int		main(int argc, char **argv)
@@ -108,18 +148,15 @@ int		main(int argc, char **argv)
 	check_error(numbers);
 	get_numbers(&numbers);
 	loop_ordering(&numbers);
-	while (i < numbers.limit_a)
-	{
-		printf("%d\n",numbers.numbers_a[i]);
-		i++;
-	}
+	printa_dpsTira(&numbers);
 	free(numbers.numbers_a);
 	free(numbers.numbers_b);
-	printf("passou\n");
+	printf("PASSOU!\n");
 }
 
-	//while (i < numbers.argc - 1)
+	//while (i < numbers.limit_a)
 	//{
-	//	printf("%d\n",numbers.numbers_a[i]);
+	//	printf("*%d\n",numbers.numbers_a[i]);
 	//	i++;
 	//}
+
