@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 10:33:15 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/07/20 12:33:35 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/07/22 08:53:16 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ int		*get_chunk(t_swap *numbers)// para encontrar o chunk que irá passar para o
 	limit = 1;
 	hold_fst = numbers->numbers_a[get_biggest(numbers, 'a')];
 	hold_snd = numbers->numbers_a[get_smallest(numbers, 'a')];// vai servir para guardar a posicao do menor numero para n ser confundido dps
-	if (numbers->limit_a < MAX_CHUNK + 5)
-		chunk = (int*)ft_calloc(sizeof(int), (numbers->limit_a - 5));
+	if (numbers->limit_a < MAX_CHUNK + 3)
+		chunk = (int*)ft_calloc(sizeof(int), (numbers->limit_a - 3));
 	else
 		chunk = (int*)ft_calloc(sizeof(int), MAX_CHUNK);
 	chunk[0] = hold_snd;
-	while (limit < (numbers->limit_a - 5) && limit <  MAX_CHUNK)
+	while (limit < (numbers->limit_a - 3) && limit <  MAX_CHUNK)
 	{
 		index = 0;
 		while (index < numbers->limit_a)

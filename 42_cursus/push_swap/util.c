@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 10:33:17 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/07/20 12:57:32 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/07/22 09:07:02 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,27 +161,31 @@ int		pp_case1(t_swap *number, int stack)
 	return (0);
 }
 
-void	more_than_five(t_swap *numbers, t_order *to_do)
+void	more_than_three(t_swap *numbers, t_order *to_do)
 {
 	int	*chunk;
 
-	while (numbers->limit_a > 5)
+	while (numbers->limit_a > 3)
 	{
 		chunk = get_chunk(numbers); // falta ainda configurar para quando houver casos de mais de 1 chunk.
 		normalize(to_do);
+		printa_dpsTira(numbers);
 		move_chunk(chunk, numbers, to_do);
 		ft_print_todo(numbers, *to_do);
 		free(chunk);
 	}
-	five_or_less(numbers, to_do); //para utilizar esta funcao devo primeiro arrumar um check_order para o stack B
+	three_or_less(numbers, to_do); //para utilizar esta funcao devo primeiro arrumar um check_order para o stack B
 }
 
-void	five_or_less(t_swap *numbers, t_order *to_do)
+void	three_or_less(t_swap *numbers, t_order *to_do)
 {
-	while (check_order(numbers))//dps colocar a ordem do stack B tbm!
+	int safe;
+
+	safe = 0;
+	while (check_order(numbers) && safe < 30)//dps colocar a ordem do stack B tbm!
 	{
-		printf("HOJE\n");
-		//printa_dpsTira(numbers);
+		
+		printa_dpsTira(numbers);
 		normalize(to_do);
 		check_size_stack(numbers, to_do);
 		check_todo(to_do);// -> função para verificar se há dois comandos iguais nos stacks.

@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 09:10:37 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/07/20 12:38:42 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/07/22 09:02:31 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ void	exec_rr(t_swap *number, int stack, int limite);
 void	exec_rrr(t_swap *number, int stack, int limite);
 void	exec_ss(t_swap *number, int stack);
 void	exec_todo(t_swap *numbers, t_order *to_do);
-void	five_or_less(t_swap *numbers, t_order *to_do);
 void	ft_putchar(char c);
 void	ft_print_todo(t_swap *numbers, t_order to_do);
 int		ft_putstr(const char *s);
@@ -76,11 +75,12 @@ int		*get_chunk(t_swap *numbers);
 int		get_posicion(int iten1, int total_arg);
 int		get_smallest(t_swap *numbers, int stack);
 int		medium_sort(t_swap *numbers, t_order *to_do);
-void	more_than_five(t_swap *numbers, t_order *to_do);
+void	more_than_three(t_swap *numbers, t_order *to_do);
 void	move_chunk(int *chunk, t_swap *numbers, t_order *to_do);
 void	normalize(t_order *to_do);
 int		pp_case1(t_swap *number, int stack);
 void	printa_dpsTira(t_swap *numbers);
 int		small_sort(t_swap *numbers, t_order *to_do);
+void	three_or_less(t_swap *numbers, t_order *to_do);
 void	up_or_down(int iten1, int total_arg, t_order *to_do);
 #endif

@@ -6,7 +6,7 @@
 /*   By: lrosendo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 09:05:19 by lrosendo          #+#    #+#             */
-/*   Updated: 2021/07/20 12:37:35 by lrosendo         ###   ########.fr       */
+/*   Updated: 2021/07/22 09:05:28 by lrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,10 @@ void	loop_ordering(t_swap *numbers)
 	numbers->limit_a = numbers->argc - 1;
 	numbers->limit_b = 0;
 	numbers->b_used = 0;
-	if (numbers->argc > 6) // somente se houver 6 ou mais itens passados.
-		more_than_five(numbers, &to_do);
+	if (numbers->argc > 3) // somente se houver 6 ou mais itens passados.
+		more_than_three(numbers, &to_do);
 	else
-		five_or_less(numbers, &to_do);
+		three_or_less(numbers, &to_do);
 }
 
 void	ft_print_todo(t_swap *numbers, t_order to_do)
